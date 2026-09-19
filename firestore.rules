@@ -1,0 +1,35 @@
+rules_version = '2';
+
+// Deploy with:  npx firebase-tools deploy --only firestore:rules
+// (or paste this file into Firebase console → Firestore Database → Rules → Publish)
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // An admin is a signed-in user whose user ID has a document in the `admins` collection.
+    // Add admins by hand in the Firebase console; the #/results page shows your user ID.
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /responses/{sessionId} {
+      // Anyone may submit exactly one response per session id; nobody may edit or delete it.
+      allow create: if request.resource.data.session_id == sessionId
+        && request.resource.data.keys().hasOnly(
+             ['session_id', 'study_id', 'submitted_at', 'started_at', 'total_time_ms', 'user_agent', 'rankings'])
+        && request.resource.data.submitted_at == request.time
+        && request.resource.data.rankings is list
+        && request.resource.data.rankings.size() > 0
+        && request.resource.data.rankings.size() <= 200;
+
+      // Only the researchers can read answers (used by the #/results page).
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // Admin list is managed only from the Firebase console (which bypasses these rules).
+    match /admins/{uid} {
+      allow read, write: if false;
+    }
+  }
+}

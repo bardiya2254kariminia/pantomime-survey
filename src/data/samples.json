@@ -1,0 +1,44 @@
+[
+  {
+    "id": "demo_01",
+    "a": "images/demo_01/img_a.png",
+    "a_prime": "images/demo_01/img_a_prime.png",
+    "b": "images/demo_01/img_b.png",
+    "change": "camera orbits 40° to the right",
+    "outputs": {
+      "Method_A": "images/demo_01/Method_A.png",
+      "Method_B": "images/demo_01/Method_B.png",
+      "Method_C": "images/demo_01/Method_C.png",
+      "Method_D": "images/demo_01/Method_D.png",
+      "Method_E": "images/demo_01/Method_E.png"
+    }
+  },
+  {
+    "id": "demo_02",
+    "a": "images/demo_02/img_a.png",
+    "a_prime": "images/demo_02/img_a_prime.png",
+    "b": "images/demo_02/img_b.png",
+    "change": "camera orbits 35° to the left",
+    "outputs": {
+      "Method_A": "images/demo_02/Method_A.png",
+      "Method_B": "images/demo_02/Method_B.png",
+      "Method_C": "images/demo_02/Method_C.png",
+      "Method_D": "images/demo_02/Method_D.png",
+      "Method_E": "images/demo_02/Method_E.png"
+    }
+  },
+  {
+    "id": "demo_03",
+    "a": "images/demo_03/img_a.png",
+    "a_prime": "images/demo_03/img_a_prime.png",
+    "b": "images/demo_03/img_b.png",
+    "change": "camera orbits 60° to the right",
+    "outputs": {
+      "Method_A": "images/demo_03/Method_A.png",
+      "Method_B": "images/demo_03/Method_B.png",
+      "Method_C": "images/demo_03/Method_C.png",
+      "Method_D": "images/demo_03/Method_D.png",
+      "Method_E": "images/demo_03/Method_E.png"
+    }
+  }
+]
