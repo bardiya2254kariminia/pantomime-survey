@@ -1,44 +1,66 @@
 [
   {
-    "id": "demo_01",
-    "a": "images/demo_01/img_a.png",
-    "a_prime": "images/demo_01/img_a_prime.png",
-    "b": "images/demo_01/img_b.png",
-    "change": "camera orbits 40° to the right",
+    "id": "q1",
+    "a": "images/Questions/q1/img_a.png",
+    "a_prime": "images/Questions/q1/img_a_prime.png",
+    "b": "images/Questions/q1/img_b.png",
+    "camera": {
+      "azimuth": -40,
+      "elevation": 0,
+      "zoom": 1
+    },
+    "edits": [
+      "jumping"
+    ],
     "outputs": {
-      "Method_A": "images/demo_01/Method_A.png",
-      "Method_B": "images/demo_01/Method_B.png",
-      "Method_C": "images/demo_01/Method_C.png",
-      "Method_D": "images/demo_01/Method_D.png",
-      "Method_E": "images/demo_01/Method_E.png"
+      "Method_A": "images/Questions/q1/Method_A.png",
+      "Method_B": "images/Questions/q1/Method_B.png",
+      "Method_C": "images/Questions/q1/Method_C.png",
+      "Method_D": "images/Questions/q1/Method_D.png",
+      "Method_E": "images/Questions/q1/Method_E.png"
     }
   },
   {
-    "id": "demo_02",
-    "a": "images/demo_02/img_a.png",
-    "a_prime": "images/demo_02/img_a_prime.png",
-    "b": "images/demo_02/img_b.png",
-    "change": "camera orbits 35° to the left",
+    "id": "q2",
+    "a": "images/Questions/q2/img_a.png",
+    "a_prime": "images/Questions/q2/img_a_prime.png",
+    "b": "images/Questions/q2/img_b.png",
+    "camera": {
+      "azimuth": 35,
+      "elevation": 20,
+      "zoom": 1
+    },
+    "edits": [
+      "jumping",
+      "sunglasses"
+    ],
     "outputs": {
-      "Method_A": "images/demo_02/Method_A.png",
-      "Method_B": "images/demo_02/Method_B.png",
-      "Method_C": "images/demo_02/Method_C.png",
-      "Method_D": "images/demo_02/Method_D.png",
-      "Method_E": "images/demo_02/Method_E.png"
+      "Method_A": "images/Questions/q2/Method_A.png",
+      "Method_B": "images/Questions/q2/Method_B.png",
+      "Method_C": "images/Questions/q2/Method_C.png",
+      "Method_D": "images/Questions/q2/Method_D.png",
+      "Method_E": "images/Questions/q2/Method_E.png"
     }
   },
   {
-    "id": "demo_03",
-    "a": "images/demo_03/img_a.png",
-    "a_prime": "images/demo_03/img_a_prime.png",
-    "b": "images/demo_03/img_b.png",
-    "change": "camera orbits 60° to the right",
+    "id": "q3",
+    "a": "images/Questions/q3/img_a.png",
+    "a_prime": "images/Questions/q3/img_a_prime.png",
+    "b": "images/Questions/q3/img_b.png",
+    "camera": {
+      "azimuth": -60,
+      "elevation": -15,
+      "zoom": 1.5
+    },
+    "edits": [
+      "raising arms"
+    ],
     "outputs": {
-      "Method_A": "images/demo_03/Method_A.png",
-      "Method_B": "images/demo_03/Method_B.png",
-      "Method_C": "images/demo_03/Method_C.png",
-      "Method_D": "images/demo_03/Method_D.png",
-      "Method_E": "images/demo_03/Method_E.png"
+      "Method_A": "images/Questions/q3/Method_A.png",
+      "Method_B": "images/Questions/q3/Method_B.png",
+      "Method_C": "images/Questions/q3/Method_C.png",
+      "Method_D": "images/Questions/q3/Method_D.png",
+      "Method_E": "images/Questions/q3/Method_E.png"
     }
   }
 ]

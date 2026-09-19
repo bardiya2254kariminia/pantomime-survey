@@ -2,7 +2,8 @@ import { useRef, useState } from 'react'
 import { study, RANK_LABELS } from '../config/study.js'
 import Img from '../components/Img.jsx'
 import Lightbox from '../components/Lightbox.jsx'
-import EditChips from '../components/EditChips.jsx'
+import ChangePanel from '../components/ChangePanel.jsx'
+import { ArrowIcon } from '../components/Arrows.jsx'
 
 // Medal colours for the first three ranks, as on the reference site; later ranks are neutral.
 const RANK_BADGE = ['bg-yellow-400 text-yellow-900 border-yellow-500', 'bg-slate-300 text-slate-700 border-slate-400', 'bg-amber-600 text-white border-amber-700']
@@ -70,7 +71,7 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, o
         </div>
 
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-5">
-          <h2 className="text-sm sm:text-base font-semibold text-slate-500 uppercase tracking-wide mb-4">
+          <h2 className="text-base sm:text-lg font-semibold text-slate-700 mb-4">
             {study.question.referenceHeading}
           </h2>
           <div className="grid grid-cols-3 gap-2 sm:gap-4">
@@ -89,12 +90,8 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, o
               </div>
             ))}
           </div>
-          {sample.change && (
-            <p className="text-center text-sm text-indigo-600 font-medium mt-4">Change to copy: {sample.change}</p>
-          )}
+          <ChangePanel edits={sample.edits} camera={sample.camera} />
         </div>
-
-        <EditChips applied={sample.applied_edits} skipped={sample.skipped_edits} />
 
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-6">
           <div className="flex items-start justify-between mb-1 gap-4">
@@ -182,13 +179,14 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, o
           <button
             onClick={submit}
             disabled={!complete}
-            className={`font-semibold text-base px-8 py-3 rounded-xl shadow transition-all duration-150 ${
+            className={`group inline-flex items-center gap-2 font-semibold text-base px-8 py-3 rounded-xl shadow transition-all duration-150 ${
               complete
                 ? 'bg-indigo-600 hover:bg-indigo-700 text-white hover:shadow-md cursor-pointer'
                 : 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none'
             }`}
           >
-            {currentIndex + 1 === total ? 'Submit Responses →' : 'Next Question →'}
+            {currentIndex + 1 === total ? 'Submit Responses' : 'Next Question'}
+            <ArrowIcon className={`w-4 h-4 transition-transform ${complete ? 'group-hover:translate-x-1' : ''}`} />
           </button>
         </div>
         {!complete && (

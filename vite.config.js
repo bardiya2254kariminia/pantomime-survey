@@ -6,4 +6,12 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
+  server: {
+    // Allows the dev server to be reached through the Vast.ai Caddy proxy,
+    // which forwards a different public host/port than what Vite binds to.
+    allowedHosts: true,
+    hmr: process.env.HMR_CLIENT_PORT
+      ? { clientPort: Number(process.env.HMR_CLIENT_PORT) }
+      : undefined,
+  },
 })

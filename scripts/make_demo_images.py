@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate clearly-labelled PLACEHOLDER images so the site can be tried before real results exist.
 
-Delete public/images/demo_* and public/welcome/* once you add your own images.
+Writes public/images/Questions/q1..q3 and OVERWRITES public/welcome/*. Replace both with your own images.
 """
 
 import json
@@ -38,7 +38,7 @@ def main():
     subjects = [((99, 102, 241), (16, 185, 129)), ((244, 114, 182), (251, 191, 36)), ((56, 189, 248), (248, 113, 113))]
     moves = [40, -35, 60]
     for i, ((ca, cb), move) in enumerate(zip(subjects, moves), start=1):
-        folder = ROOT / "public" / "images" / f"demo_{i:02d}"
+        folder = ROOT / "public" / "images" / "Questions" / f"q{i}"
         folder.mkdir(parents=True, exist_ok=True)
         figure(ca, 0, "A").save(folder / "img_a.png")
         figure(ca, move, "A'").save(folder / "img_a_prime.png")
@@ -48,8 +48,9 @@ def main():
         for method, (az, tint) in zip(METHODS, outputs):
             # Never print the method name on an output: it would un-blind participants.
             figure(cb, az, "output", tint=tint).save(folder / f"{method}.png")
-        direction = "right" if move > 0 else "left"
-        (folder / "meta.json").write_text(json.dumps({"change": f"camera orbits {abs(move)}° to the {direction}"}) + "\n")
+        # A positive move here turns the view right; in meta.json a camera orbiting right is negative azimuth.
+        meta = {"camera": {"azimuth": -move, "elevation": 0, "zoom": 1}}
+        (folder / "meta.json").write_text(json.dumps(meta, indent=2) + "\n")
 
     welcome = ROOT / "public" / "welcome"
     welcome.mkdir(parents=True, exist_ok=True)

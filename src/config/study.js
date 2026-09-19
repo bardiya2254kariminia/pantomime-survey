@@ -18,35 +18,38 @@ export const study = {
   shuffleQuestions: false,
   shuffleOutputs: true,
 
-  // The reference site defines a consent step but never shows it. Set enabled: false to skip it.
-  consent: {
-    enabled: true,
-    title: 'Before you begin',
-    paragraphs: [
-      'This study is part of academic research on AI image editing. You will be shown images and asked to rank AI-generated results.',
-      'Participation is voluntary and anonymous. We do not collect your name, email or IP address, only your rankings, the time spent on each question and your browser type.',
-      'You may stop at any time by closing the page. Answers are only submitted when you reach the end.',
-    ],
-    checkbox: 'I am 18 or older and agree to take part in this study.',
-  },
-
   // Welcome-page illustration (files in public/welcome/). Replace with a real example.
   welcomeExample: {
     a: 'welcome/img_a.png',
     a_prime: 'welcome/img_a_prime.png',
     b: 'welcome/img_b.png',
     b_prime: 'welcome/img_b_prime.png',
-    change: 'Camera orbits 40° to the right',
+    // The edits in the A → A′ example; B′ is described as having the same ones.
+    edits: ['Jumping'],
+    // Signed azimuth in degrees: negative orbits to the right, positive to the left.
+    cameraAzimuth: -90,
+  },
+
+  // The two things a participant has to keep track of, shown as chips above the example.
+  legend: {
+    edits: {
+      title: 'Edits',
+      help: 'What changed about the subject itself: expression, clothing, pose, or objects added and removed. The output has to show these same edits.',
+    },
+    camera: {
+      title: 'Camera',
+      help: 'Where the camera moved to as it orbits the subject. The output has to be seen from that same new viewpoint.',
+    },
   },
 
   // Text shown to participants on each question.
   question: {
-    referenceHeading: 'Reference images: what change should be copied?',
+    referenceHeading: 'Reference Images — What changes did the AI learn?',
     rankHeading: 'Rank the best outputs',
     rankHelp:
       'Several AI methods produced the results below. Use the rank buttons under each image. The best result gets',
     goodOutput:
-      'A good output shows the same change as A → A′, keeps the identity and appearance of B, and looks realistic.',
+      'A good output applies the same edits as A → A′, moves the camera the same way around the subject, keeps the identity and appearance of B, and still looks realistic.',
   },
 }
 
