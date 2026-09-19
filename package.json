@@ -8,7 +8,8 @@
     "dev:local": "vite --mode offline --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "samples": "python3 scripts/build_samples.py"
+    "samples": "python3 scripts/build_samples.py",
+    "deploy": "vite build && gh-pages -d dist --nojekyll -m \"Deploy study site\""
   },
   "dependencies": {
     "firebase": "^12.19.0",
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.1",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^4.3.3",
     "vite": "^8.3.0"
   }

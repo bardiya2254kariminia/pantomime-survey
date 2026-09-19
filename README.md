@@ -92,9 +92,16 @@ One-time setup:
 
 ## 4. Publish on GitHub Pages
 
-`.github/workflows/deploy.yml` builds and publishes the site on every push to `main`. One time only, in the
-GitHub repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**. The study is then at
-`https://<your-github-user>.github.io/pantomime-survey/`.
+Run this on the machine that has the git repo (not from the Windows zip, which has no git):
+
+```bash
+npm run deploy       # builds the site and pushes only dist/ to the gh-pages branch
+```
+
+Your source code is not pushed; only the built site is. After the first deploy, one time only, in the GitHub
+repo: **Settings → Pages → Build and deployment → Source: Deploy from a branch → `gh-pages` / `(root)` → Save**.
+The study is then at `https://<your-github-user>.github.io/pantomime-survey/` (it takes about a minute).
+Run `npm run deploy` again whenever you change questions or text.
 
 ## 5. Get the report
 
@@ -146,5 +153,5 @@ public/welcome/            welcome-page example images
 scripts/build_samples.py   folders → samples.json
 scripts/make_demo_images.py placeholder images
 firestore.rules            who may write and read responses
-.github/workflows/deploy.yml  build + publish to GitHub Pages on push
+setup.sh                   builds a double-click Windows bundle (build/pantomime-survey-windows.zip)
 ```
