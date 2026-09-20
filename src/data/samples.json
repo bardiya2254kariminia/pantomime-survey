@@ -14,15 +14,15 @@
       "black and white pencil sketch style"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q1/Method_A.png",
-      "Method_B": "images/Questions/q1/Method_B.png",
-      "Method_C": "images/Questions/q1/Method_C.png",
-      "Method_D": "images/Questions/q1/Method_D.png",
-      "Method_E": "images/Questions/q1/Method_E.png",
-      "Method_F": "images/Questions/q1/Method_F.png",
-      "Method_G": "images/Questions/q1/Method_G.png",
-      "Method_H": "images/Questions/q1/Method_H.png",
-      "Method_I": "images/Questions/q1/Method_I.png"
+      "Edit-Transfer": "images/Questions/q1/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q1/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q1/Method_C.png",
+      "LoRWeB": "images/Questions/q1/Method_D.png",
+      "NanoBanana-2": "images/Questions/q1/Method_E.png",
+      "PanToMime": "images/Questions/q1/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q1/Method_G.png",
+      "RelationAdapter": "images/Questions/q1/Method_H.png",
+      "VisualCloze": "images/Questions/q1/Method_I.png"
     }
   },
   {
@@ -40,15 +40,15 @@
       "open mouth"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q2/Method_A.png",
-      "Method_B": "images/Questions/q2/Method_B.png",
-      "Method_C": "images/Questions/q2/Method_C.png",
-      "Method_D": "images/Questions/q2/Method_D.png",
-      "Method_E": "images/Questions/q2/Method_E.png",
-      "Method_F": "images/Questions/q2/Method_F.png",
-      "Method_G": "images/Questions/q2/Method_G.png",
-      "Method_H": "images/Questions/q2/Method_H.png",
-      "Method_I": "images/Questions/q2/Method_I.png"
+      "Edit-Transfer": "images/Questions/q2/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q2/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q2/Method_C.png",
+      "LoRWeB": "images/Questions/q2/Method_D.png",
+      "NanoBanana-2": "images/Questions/q2/Method_E.png",
+      "PanToMime": "images/Questions/q2/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q2/Method_G.png",
+      "RelationAdapter": "images/Questions/q2/Method_H.png",
+      "VisualCloze": "images/Questions/q2/Method_I.png"
     }
   },
   {
@@ -66,15 +66,15 @@
       "oil painting style"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q3/Method_A.png",
-      "Method_B": "images/Questions/q3/Method_B.png",
-      "Method_C": "images/Questions/q3/Method_C.png",
-      "Method_D": "images/Questions/q3/Method_D.png",
-      "Method_E": "images/Questions/q3/Method_E.png",
-      "Method_F": "images/Questions/q3/Method_F.png",
-      "Method_G": "images/Questions/q3/Method_G.png",
-      "Method_H": "images/Questions/q3/Method_H.png",
-      "Method_I": "images/Questions/q3/Method_I.png"
+      "Edit-Transfer": "images/Questions/q3/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q3/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q3/Method_C.png",
+      "LoRWeB": "images/Questions/q3/Method_D.png",
+      "NanoBanana-2": "images/Questions/q3/Method_E.png",
+      "PanToMime": "images/Questions/q3/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q3/Method_G.png",
+      "RelationAdapter": "images/Questions/q3/Method_H.png",
+      "VisualCloze": "images/Questions/q3/Method_I.png"
     }
   },
   {
@@ -91,15 +91,15 @@
       "change the season to spring"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q4/Method_A.png",
-      "Method_B": "images/Questions/q4/Method_B.png",
-      "Method_C": "images/Questions/q4/Method_C.png",
-      "Method_D": "images/Questions/q4/Method_D.png",
-      "Method_E": "images/Questions/q4/Method_E.png",
-      "Method_F": "images/Questions/q4/Method_F.png",
-      "Method_G": "images/Questions/q4/Method_G.png",
-      "Method_H": "images/Questions/q4/Method_H.png",
-      "Method_I": "images/Questions/q4/Method_I.png"
+      "Edit-Transfer": "images/Questions/q4/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q4/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q4/Method_C.png",
+      "LoRWeB": "images/Questions/q4/Method_D.png",
+      "NanoBanana-2": "images/Questions/q4/Method_E.png",
+      "PanToMime": "images/Questions/q4/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q4/Method_G.png",
+      "RelationAdapter": "images/Questions/q4/Method_H.png",
+      "VisualCloze": "images/Questions/q4/Method_I.png"
     }
   },
   {
@@ -117,15 +117,15 @@
       "sitting pose"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q5/Method_A.png",
-      "Method_B": "images/Questions/q5/Method_B.png",
-      "Method_C": "images/Questions/q5/Method_C.png",
-      "Method_D": "images/Questions/q5/Method_D.png",
-      "Method_E": "images/Questions/q5/Method_E.png",
-      "Method_F": "images/Questions/q5/Method_F.png",
-      "Method_G": "images/Questions/q5/Method_G.png",
-      "Method_H": "images/Questions/q5/Method_H.png",
-      "Method_I": "images/Questions/q5/Method_I.png"
+      "Edit-Transfer": "images/Questions/q5/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q5/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q5/Method_C.png",
+      "LoRWeB": "images/Questions/q5/Method_D.png",
+      "NanoBanana-2": "images/Questions/q5/Method_E.png",
+      "PanToMime": "images/Questions/q5/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q5/Method_G.png",
+      "RelationAdapter": "images/Questions/q5/Method_H.png",
+      "VisualCloze": "images/Questions/q5/Method_I.png"
     }
   },
   {
@@ -142,15 +142,15 @@
       "jumping pose"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q6/Method_A.png",
-      "Method_B": "images/Questions/q6/Method_B.png",
-      "Method_C": "images/Questions/q6/Method_C.png",
-      "Method_D": "images/Questions/q6/Method_D.png",
-      "Method_E": "images/Questions/q6/Method_E.png",
-      "Method_F": "images/Questions/q6/Method_F.png",
-      "Method_G": "images/Questions/q6/Method_G.png",
-      "Method_H": "images/Questions/q6/Method_H.png",
-      "Method_I": "images/Questions/q6/Method_I.png"
+      "Edit-Transfer": "images/Questions/q6/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q6/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q6/Method_C.png",
+      "LoRWeB": "images/Questions/q6/Method_D.png",
+      "NanoBanana-2": "images/Questions/q6/Method_E.png",
+      "PanToMime": "images/Questions/q6/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q6/Method_G.png",
+      "RelationAdapter": "images/Questions/q6/Method_H.png",
+      "VisualCloze": "images/Questions/q6/Method_I.png"
     }
   },
   {
@@ -167,15 +167,15 @@
       "sad expression"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q7/Method_A.png",
-      "Method_B": "images/Questions/q7/Method_B.png",
-      "Method_C": "images/Questions/q7/Method_C.png",
-      "Method_D": "images/Questions/q7/Method_D.png",
-      "Method_E": "images/Questions/q7/Method_E.png",
-      "Method_F": "images/Questions/q7/Method_F.png",
-      "Method_G": "images/Questions/q7/Method_G.png",
-      "Method_H": "images/Questions/q7/Method_H.png",
-      "Method_I": "images/Questions/q7/Method_I.png"
+      "Edit-Transfer": "images/Questions/q7/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q7/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q7/Method_C.png",
+      "LoRWeB": "images/Questions/q7/Method_D.png",
+      "NanoBanana-2": "images/Questions/q7/Method_E.png",
+      "PanToMime": "images/Questions/q7/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q7/Method_G.png",
+      "RelationAdapter": "images/Questions/q7/Method_H.png",
+      "VisualCloze": "images/Questions/q7/Method_I.png"
     }
   },
   {
@@ -193,15 +193,15 @@
       "sitting pose"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q8/Method_A.png",
-      "Method_B": "images/Questions/q8/Method_B.png",
-      "Method_C": "images/Questions/q8/Method_C.png",
-      "Method_D": "images/Questions/q8/Method_D.png",
-      "Method_E": "images/Questions/q8/Method_E.png",
-      "Method_F": "images/Questions/q8/Method_F.png",
-      "Method_G": "images/Questions/q8/Method_G.png",
-      "Method_H": "images/Questions/q8/Method_H.png",
-      "Method_I": "images/Questions/q8/Method_I.png"
+      "Edit-Transfer": "images/Questions/q8/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q8/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q8/Method_C.png",
+      "LoRWeB": "images/Questions/q8/Method_D.png",
+      "NanoBanana-2": "images/Questions/q8/Method_E.png",
+      "PanToMime": "images/Questions/q8/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q8/Method_G.png",
+      "RelationAdapter": "images/Questions/q8/Method_H.png",
+      "VisualCloze": "images/Questions/q8/Method_I.png"
     }
   },
   {
@@ -219,15 +219,15 @@
       "sitting pose"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q9/Method_A.png",
-      "Method_B": "images/Questions/q9/Method_B.png",
-      "Method_C": "images/Questions/q9/Method_C.png",
-      "Method_D": "images/Questions/q9/Method_D.png",
-      "Method_E": "images/Questions/q9/Method_E.png",
-      "Method_F": "images/Questions/q9/Method_F.png",
-      "Method_G": "images/Questions/q9/Method_G.png",
-      "Method_H": "images/Questions/q9/Method_H.png",
-      "Method_I": "images/Questions/q9/Method_I.png"
+      "Edit-Transfer": "images/Questions/q9/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q9/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q9/Method_C.png",
+      "LoRWeB": "images/Questions/q9/Method_D.png",
+      "NanoBanana-2": "images/Questions/q9/Method_E.png",
+      "PanToMime": "images/Questions/q9/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q9/Method_G.png",
+      "RelationAdapter": "images/Questions/q9/Method_H.png",
+      "VisualCloze": "images/Questions/q9/Method_I.png"
     }
   },
   {
@@ -245,15 +245,15 @@
       "oil painting style"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q10/Method_A.png",
-      "Method_B": "images/Questions/q10/Method_B.png",
-      "Method_C": "images/Questions/q10/Method_C.png",
-      "Method_D": "images/Questions/q10/Method_D.png",
-      "Method_E": "images/Questions/q10/Method_E.png",
-      "Method_F": "images/Questions/q10/Method_F.png",
-      "Method_G": "images/Questions/q10/Method_G.png",
-      "Method_H": "images/Questions/q10/Method_H.png",
-      "Method_I": "images/Questions/q10/Method_I.png"
+      "Edit-Transfer": "images/Questions/q10/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q10/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q10/Method_C.png",
+      "LoRWeB": "images/Questions/q10/Method_D.png",
+      "NanoBanana-2": "images/Questions/q10/Method_E.png",
+      "PanToMime": "images/Questions/q10/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q10/Method_G.png",
+      "RelationAdapter": "images/Questions/q10/Method_H.png",
+      "VisualCloze": "images/Questions/q10/Method_I.png"
     }
   },
   {
@@ -271,15 +271,15 @@
       "sitting pose"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q11/Method_A.png",
-      "Method_B": "images/Questions/q11/Method_B.png",
-      "Method_C": "images/Questions/q11/Method_C.png",
-      "Method_D": "images/Questions/q11/Method_D.png",
-      "Method_E": "images/Questions/q11/Method_E.png",
-      "Method_F": "images/Questions/q11/Method_F.png",
-      "Method_G": "images/Questions/q11/Method_G.png",
-      "Method_H": "images/Questions/q11/Method_H.png",
-      "Method_I": "images/Questions/q11/Method_I.png"
+      "Edit-Transfer": "images/Questions/q11/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q11/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q11/Method_C.png",
+      "LoRWeB": "images/Questions/q11/Method_D.png",
+      "NanoBanana-2": "images/Questions/q11/Method_E.png",
+      "PanToMime": "images/Questions/q11/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q11/Method_G.png",
+      "RelationAdapter": "images/Questions/q11/Method_H.png",
+      "VisualCloze": "images/Questions/q11/Method_I.png"
     }
   },
   {
@@ -296,15 +296,15 @@
       "fireball held between the hands"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q12/Method_A.png",
-      "Method_B": "images/Questions/q12/Method_B.png",
-      "Method_C": "images/Questions/q12/Method_C.png",
-      "Method_D": "images/Questions/q12/Method_D.png",
-      "Method_E": "images/Questions/q12/Method_E.png",
-      "Method_F": "images/Questions/q12/Method_F.png",
-      "Method_G": "images/Questions/q12/Method_G.png",
-      "Method_H": "images/Questions/q12/Method_H.png",
-      "Method_I": "images/Questions/q12/Method_I.png"
+      "Edit-Transfer": "images/Questions/q12/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q12/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q12/Method_C.png",
+      "LoRWeB": "images/Questions/q12/Method_D.png",
+      "NanoBanana-2": "images/Questions/q12/Method_E.png",
+      "PanToMime": "images/Questions/q12/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q12/Method_G.png",
+      "RelationAdapter": "images/Questions/q12/Method_H.png",
+      "VisualCloze": "images/Questions/q12/Method_I.png"
     }
   },
   {
@@ -321,15 +321,15 @@
       "ice shard held between the hands"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q13/Method_A.png",
-      "Method_B": "images/Questions/q13/Method_B.png",
-      "Method_C": "images/Questions/q13/Method_C.png",
-      "Method_D": "images/Questions/q13/Method_D.png",
-      "Method_E": "images/Questions/q13/Method_E.png",
-      "Method_F": "images/Questions/q13/Method_F.png",
-      "Method_G": "images/Questions/q13/Method_G.png",
-      "Method_H": "images/Questions/q13/Method_H.png",
-      "Method_I": "images/Questions/q13/Method_I.png"
+      "Edit-Transfer": "images/Questions/q13/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q13/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q13/Method_C.png",
+      "LoRWeB": "images/Questions/q13/Method_D.png",
+      "NanoBanana-2": "images/Questions/q13/Method_E.png",
+      "PanToMime": "images/Questions/q13/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q13/Method_G.png",
+      "RelationAdapter": "images/Questions/q13/Method_H.png",
+      "VisualCloze": "images/Questions/q13/Method_I.png"
     }
   },
   {
@@ -347,15 +347,15 @@
       "black and white pencil sketch style"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q14/Method_A.png",
-      "Method_B": "images/Questions/q14/Method_B.png",
-      "Method_C": "images/Questions/q14/Method_C.png",
-      "Method_D": "images/Questions/q14/Method_D.png",
-      "Method_E": "images/Questions/q14/Method_E.png",
-      "Method_F": "images/Questions/q14/Method_F.png",
-      "Method_G": "images/Questions/q14/Method_G.png",
-      "Method_H": "images/Questions/q14/Method_H.png",
-      "Method_I": "images/Questions/q14/Method_I.png"
+      "Edit-Transfer": "images/Questions/q14/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q14/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q14/Method_C.png",
+      "LoRWeB": "images/Questions/q14/Method_D.png",
+      "NanoBanana-2": "images/Questions/q14/Method_E.png",
+      "PanToMime": "images/Questions/q14/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q14/Method_G.png",
+      "RelationAdapter": "images/Questions/q14/Method_H.png",
+      "VisualCloze": "images/Questions/q14/Method_I.png"
     }
   },
   {
@@ -373,15 +373,15 @@
       "open mouth"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q15/Method_A.png",
-      "Method_B": "images/Questions/q15/Method_B.png",
-      "Method_C": "images/Questions/q15/Method_C.png",
-      "Method_D": "images/Questions/q15/Method_D.png",
-      "Method_E": "images/Questions/q15/Method_E.png",
-      "Method_F": "images/Questions/q15/Method_F.png",
-      "Method_G": "images/Questions/q15/Method_G.png",
-      "Method_H": "images/Questions/q15/Method_H.png",
-      "Method_I": "images/Questions/q15/Method_I.png"
+      "Edit-Transfer": "images/Questions/q15/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q15/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q15/Method_C.png",
+      "LoRWeB": "images/Questions/q15/Method_D.png",
+      "NanoBanana-2": "images/Questions/q15/Method_E.png",
+      "PanToMime": "images/Questions/q15/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q15/Method_G.png",
+      "RelationAdapter": "images/Questions/q15/Method_H.png",
+      "VisualCloze": "images/Questions/q15/Method_I.png"
     }
   },
   {
@@ -399,15 +399,15 @@
       "oil painting style"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q16/Method_A.png",
-      "Method_B": "images/Questions/q16/Method_B.png",
-      "Method_C": "images/Questions/q16/Method_C.png",
-      "Method_D": "images/Questions/q16/Method_D.png",
-      "Method_E": "images/Questions/q16/Method_E.png",
-      "Method_F": "images/Questions/q16/Method_F.png",
-      "Method_G": "images/Questions/q16/Method_G.png",
-      "Method_H": "images/Questions/q16/Method_H.png",
-      "Method_I": "images/Questions/q16/Method_I.png"
+      "Edit-Transfer": "images/Questions/q16/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q16/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q16/Method_C.png",
+      "LoRWeB": "images/Questions/q16/Method_D.png",
+      "NanoBanana-2": "images/Questions/q16/Method_E.png",
+      "PanToMime": "images/Questions/q16/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q16/Method_G.png",
+      "RelationAdapter": "images/Questions/q16/Method_H.png",
+      "VisualCloze": "images/Questions/q16/Method_I.png"
     }
   },
   {
@@ -424,15 +424,15 @@
       "change the season to spring"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q17/Method_A.png",
-      "Method_B": "images/Questions/q17/Method_B.png",
-      "Method_C": "images/Questions/q17/Method_C.png",
-      "Method_D": "images/Questions/q17/Method_D.png",
-      "Method_E": "images/Questions/q17/Method_E.png",
-      "Method_F": "images/Questions/q17/Method_F.png",
-      "Method_G": "images/Questions/q17/Method_G.png",
-      "Method_H": "images/Questions/q17/Method_H.png",
-      "Method_I": "images/Questions/q17/Method_I.png"
+      "Edit-Transfer": "images/Questions/q17/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q17/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q17/Method_C.png",
+      "LoRWeB": "images/Questions/q17/Method_D.png",
+      "NanoBanana-2": "images/Questions/q17/Method_E.png",
+      "PanToMime": "images/Questions/q17/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q17/Method_G.png",
+      "RelationAdapter": "images/Questions/q17/Method_H.png",
+      "VisualCloze": "images/Questions/q17/Method_I.png"
     }
   },
   {
@@ -450,15 +450,15 @@
       "sitting pose"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q18/Method_A.png",
-      "Method_B": "images/Questions/q18/Method_B.png",
-      "Method_C": "images/Questions/q18/Method_C.png",
-      "Method_D": "images/Questions/q18/Method_D.png",
-      "Method_E": "images/Questions/q18/Method_E.png",
-      "Method_F": "images/Questions/q18/Method_F.png",
-      "Method_G": "images/Questions/q18/Method_G.png",
-      "Method_H": "images/Questions/q18/Method_H.png",
-      "Method_I": "images/Questions/q18/Method_I.png"
+      "Edit-Transfer": "images/Questions/q18/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q18/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q18/Method_C.png",
+      "LoRWeB": "images/Questions/q18/Method_D.png",
+      "NanoBanana-2": "images/Questions/q18/Method_E.png",
+      "PanToMime": "images/Questions/q18/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q18/Method_G.png",
+      "RelationAdapter": "images/Questions/q18/Method_H.png",
+      "VisualCloze": "images/Questions/q18/Method_I.png"
     }
   },
   {
@@ -476,15 +476,15 @@
       "black and white pencil sketch style"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q19/Method_A.png",
-      "Method_B": "images/Questions/q19/Method_B.png",
-      "Method_C": "images/Questions/q19/Method_C.png",
-      "Method_D": "images/Questions/q19/Method_D.png",
-      "Method_E": "images/Questions/q19/Method_E.png",
-      "Method_F": "images/Questions/q19/Method_F.png",
-      "Method_G": "images/Questions/q19/Method_G.png",
-      "Method_H": "images/Questions/q19/Method_H.png",
-      "Method_I": "images/Questions/q19/Method_I.png"
+      "Edit-Transfer": "images/Questions/q19/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q19/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q19/Method_C.png",
+      "LoRWeB": "images/Questions/q19/Method_D.png",
+      "NanoBanana-2": "images/Questions/q19/Method_E.png",
+      "PanToMime": "images/Questions/q19/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q19/Method_G.png",
+      "RelationAdapter": "images/Questions/q19/Method_H.png",
+      "VisualCloze": "images/Questions/q19/Method_I.png"
     }
   },
   {
@@ -502,15 +502,15 @@
       "open mouth"
     ],
     "outputs": {
-      "Method_A": "images/Questions/q20/Method_A.png",
-      "Method_B": "images/Questions/q20/Method_B.png",
-      "Method_C": "images/Questions/q20/Method_C.png",
-      "Method_D": "images/Questions/q20/Method_D.png",
-      "Method_E": "images/Questions/q20/Method_E.png",
-      "Method_F": "images/Questions/q20/Method_F.png",
-      "Method_G": "images/Questions/q20/Method_G.png",
-      "Method_H": "images/Questions/q20/Method_H.png",
-      "Method_I": "images/Questions/q20/Method_I.png"
+      "Edit-Transfer": "images/Questions/q20/Method_A.png",
+      "Flux2-Klein-9B": "images/Questions/q20/Method_B.png",
+      "GPTImage-2.5-Sunburst": "images/Questions/q20/Method_C.png",
+      "LoRWeB": "images/Questions/q20/Method_D.png",
+      "NanoBanana-2": "images/Questions/q20/Method_E.png",
+      "PanToMime": "images/Questions/q20/Method_F.png",
+      "Qwen-Image-Edit-2511": "images/Questions/q20/Method_G.png",
+      "RelationAdapter": "images/Questions/q20/Method_H.png",
+      "VisualCloze": "images/Questions/q20/Method_I.png"
     }
   }
 ]

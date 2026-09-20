@@ -5,3 +5,8 @@ dist
 *.log
 .DS_Store
 build
+
+# Firebase service-account key (a password to the project) and fetched answers
+serviceAccountKey.json
+*serviceAccount*.json
+results/

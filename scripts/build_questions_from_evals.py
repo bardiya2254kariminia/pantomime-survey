@@ -46,8 +46,9 @@ INDEX = Path("/workspace/Pantomime-baselines-ablation/ablation/eval_pair_idx.jso
 ABLATION = Path("/workspace/ablation_results")
 
 # Blinded code -> where that method's eval{i}.png lives, relative to ABLATION.
-# The codes are what the results page reports; scripts/method_blinding.json is
-# the key, and it stays out of public/ so participants never receive it.
+# The codes are what the browser sees and what Firestore stores. The real names
+# are put back at READ time, from src/config/methods.json, so the report and the
+# exports name baselines while the participant's page and its image URLs do not.
 # PanToMime is read from the ablation arm the study settled on -- NOT from
 # PanToMime/results/images, which only ever held a two-sample smoke test.
 METHODS = {
@@ -179,9 +180,13 @@ def main(argv=None) -> int:
     if dry_run:
         return 0
 
-    # The blinding key and the provenance of every question, kept out of public/.
-    (ROOT / "scripts" / "method_blinding.json").write_text(
-        json.dumps({code: name for code, (name, _) in METHODS.items()}, indent=2) + "\n")
+    # The blinding key, in two places because they have different audiences:
+    # scripts/ is the researcher's copy and never ships, while src/config/ is
+    # read by the results page (a lazy chunk participants never download) so the
+    # report can name baselines instead of codes.
+    key = {code: name for code, (name, _) in METHODS.items()}
+    (ROOT / "scripts" / "method_blinding.json").write_text(json.dumps(key, indent=2) + "\n")
+    (ROOT / "src" / "config" / "methods.json").write_text(json.dumps(key, indent=2) + "\n")
     (ROOT / "scripts" / "question_sources.json").write_text(
         json.dumps({
             "index": str(INDEX),

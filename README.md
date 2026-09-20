@@ -69,6 +69,11 @@ It copies A, A' and B from the dataset and one output per method from `/workspac
 and writes each `meta.json` from the pair's own camera delta and prompts. B' (the ground truth) is
 never copied: the participant is asked to imagine it.
 
+The image files are named `Method_A.png` … `Method_I.png` so that no participant's image URL names a
+baseline. The names themselves are put back by `npm run samples`, which reads
+`scripts/method_blinding.json`: `src/data/samples.json` keys each output by its real baseline, so a
+submitted answer records `"rank1": "PanToMime"`, not `"rank1": "Method_F"`.
+
 The current 20 were hand-picked from the pairs the authors reviewed, for a large A → A' camera move
 (17 of the 20 turn at least 90°) and a wide spread of prompts (all 13 reviewed prompt groups appear),
 then ordered so no two neighbouring questions share a prompt.
@@ -77,7 +82,7 @@ Two files it also writes, both outside `public/` so participants never receive t
 
 | File | What it holds |
 |---|---|
-| `scripts/method_blinding.json` | which baseline each `Method_X` code is — the key to the report |
+| `scripts/method_blinding.json` | which baseline each `Method_X` file is; `npm run samples` reads it |
 | `scripts/question_sources.json` | per question: the eval key, the four dataset paths (B' included), both cameras, and the generated meta |
 
 `meta.json` is derived, not typed by hand. Its conventions, verified against the dataset:
@@ -137,9 +142,9 @@ npm run samples      # writes src/data/samples.json
   one per line in `public/images/Questions/order.txt`.
 - The script stops with a message if a meta.json value is invalid, and warns about keys it doesn't know
   (a typo such as `elevaton`).
-- **Blinding:** the page never shows method names, but the image URL does, exactly as on the reference site.
-  That is why the generated questions use neutral codes (`Method_A.png`, …) with the key in
-  `scripts/method_blinding.json`. Keep that shape if you add folders by hand.
+- **Method names:** `npm run samples` renames each output through `scripts/method_blinding.json`, so the
+  files on disk keep neutral names (`Method_A.png`, …) while the app — and therefore every stored answer —
+  carries the real baseline name. Delete that file and the file stem becomes the method name again.
 - All participant-facing text is in `src/config/study.js`: title, task description, welcome example and number
   of ranks. When you change the questions after the study has started, change `id` there too, so responses
   from the two versions can be told apart.
@@ -174,7 +179,31 @@ repo: **Settings → Pages → Build and deployment → Source: Deploy from a br
 The study is then at `https://<your-github-user>.github.io/pantomime-survey/` (it takes about a minute).
 Run `npm run deploy` again whenever you change questions or text.
 
-## 5. Get the report
+## 5. Collect the answers as JSON
+
+The results page exports from the browser; this does the same headlessly, with nobody signed in —
+the thing to point a cron job or an analysis notebook at.
+
+```bash
+bash scripts/fetch_responses.sh                      # -> results/responses_<date>.json
+INCLUDE_TESTS=1 bash scripts/fetch_responses.sh      # keep `npm run dev` runs too
+STUDY_ID=pantomime-v1 bash scripts/fetch_responses.sh
+```
+
+It needs a Google credential, because the rules let only admins read `responses`. Get one once from
+**Firebase console → Project settings → Service accounts → Generate new private key**, and save the
+downloaded file as `serviceAccountKey.json` next to `package.json` (`.gitignore` already covers it and
+`results/`). That key is a password to the whole project — never commit it. `KEY=/path/to/key.json`
+points somewhere else, and `ACCESS_TOKEN=…` skips the key entirely.
+
+The JSON holds the fetch details, a `method_summary` (Borda points, 1st-place and top-3 rates per
+baseline) and every response. Answers stored before the rename hold a code (`Method_F`); those get a
+`rank1_method` beside each one and are counted as the same baseline, so old and new data add up.
+
+`scripts/fetch_responses.py` is the same thing with flags (`--key`, `--out`, `--project`, `--database`,
+`--collection`, `--study-id`, `--include-tests`) if you would rather call it directly.
+
+## 6. Get the report
 
 Open `https://<your-user>.github.io/pantomime-survey/#/results` and sign in with an admin Google account. It shows:
 
@@ -221,8 +250,10 @@ src/
   components/              image with fallback, lightbox, arrows, edit/camera icons and panel, local-mode banner
 public/images/Questions/   question folders q1, q2, … (the current ones are placeholders)
 public/welcome/            welcome-page example images
-scripts/build_questions_from_evals.py  eval pairs → question folders (+ the blinding key)
-scripts/build_samples.py   folders → samples.json
+scripts/build_questions_from_evals.py  eval pairs → question folders (+ the method-name key)
+scripts/build_samples.py   folders → samples.json (applies the method names)
+scripts/fetch_responses.py Firestore → one JSON file of every answer
+scripts/fetch_responses.sh the same, with the credential and dependency handling
 scripts/make_demo_images.py placeholder images
 firestore.rules            who may write and read responses
 setup.sh                   builds a double-click Windows bundle (build/pantomime-survey-windows.zip)

@@ -7,7 +7,8 @@ Each question is one folder (q1, q2, q3, ...):
         img_a.png         exemplar A
         img_a_prime.png   exemplar A'  (A after the change)
         img_b.png         query B      (the new subject)
-        <Method>.png      one output per method; the file name (without extension) is the method name
+        <Method>.png      one output per method; the file name (without extension) is the method name,
+                          unless scripts/method_blinding.json renames it (see below)
         meta.json         optional, e.g.
                           {
                             "camera": {"azimuth": -40, "elevation": 10, "zoom": 1.2},
@@ -24,6 +25,14 @@ The camera values may also be written at the top level instead of inside "camera
 Questions appear in natural order (q2 before q10) unless public/images/Questions/order.txt
 lists folder names (one per line); folders missing from order.txt are then left out.
 Any of .png / .jpg / .jpeg / .webp works.
+
+scripts/method_blinding.json, when present, maps a file stem to the method name to use:
+
+    {"Method_A": "Edit-Transfer", "Method_F": "PanToMime", ...}
+
+The images keep their neutral file names, so nothing in a participant's image URLs
+names a baseline, while the answers the study records -- display_order, rank1, rank2,
+rank3 -- carry the real baseline name instead of a code that needs a key to read.
 """
 
 import json
@@ -34,6 +43,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 IMAGES = ROOT / "public" / "images" / "Questions"
 OUT = ROOT / "src" / "data" / "samples.json"
+BLINDING = ROOT / "scripts" / "method_blinding.json"
 EXTS = {".png", ".jpg", ".jpeg", ".webp"}
 REFERENCE = {"img_a": "a", "img_a_prime": "a_prime", "img_b": "b"}
 CAMERA_DEFAULTS = {"azimuth": 0, "elevation": 0, "zoom": 1}
@@ -89,7 +99,23 @@ def read_meta(folder: Path):
     return out
 
 
-def build_sample(folder: Path):
+def method_names():
+    """File stem -> the name to record for it. Empty when nothing is being renamed."""
+    if not BLINDING.exists():
+        return {}
+    try:
+        names = json.loads(BLINDING.read_text())
+    except json.JSONDecodeError as e:
+        raise SystemExit(f"{BLINDING.name} is not valid JSON: {e}")
+    if not all(isinstance(v, str) and v.strip() for v in names.values()):
+        raise SystemExit(f"{BLINDING.name}: every value must be a non-empty method name")
+    duplicates = {n for n in names.values() if list(names.values()).count(n) > 1}
+    if duplicates:
+        raise SystemExit(f"{BLINDING.name}: two codes map to the same name: {', '.join(sorted(duplicates))}")
+    return names
+
+
+def build_sample(folder: Path, names: dict):
     files = {p.stem: p for p in sorted(folder.iterdir()) if p.suffix.lower() in EXTS}
     missing = [name for name in REFERENCE if name not in files]
     if missing:
@@ -100,7 +126,7 @@ def build_sample(folder: Path):
     sample.update({key: rel(files[stem]) for stem, key in REFERENCE.items()})
     sample.update(read_meta(folder))
 
-    sample["outputs"] = {stem: rel(p) for stem, p in files.items() if stem not in REFERENCE}
+    sample["outputs"] = {names.get(stem, stem): rel(p) for stem, p in files.items() if stem not in REFERENCE}
     if len(sample["outputs"]) < 2:
         raise SystemExit(f"{folder.name}: needs at least 2 method outputs, found {len(sample['outputs'])}")
     return sample
@@ -120,7 +146,8 @@ def main():
     else:
         order = sorted(folders, key=natural_key)
 
-    samples = [build_sample(folders[s]) for s in order]
+    names = method_names()
+    samples = [build_sample(folders[s], names) for s in order]
 
     methods = [set(s["outputs"]) for s in samples]
     if any(m != methods[0] for m in methods):
@@ -128,6 +155,8 @@ def main():
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(samples, indent=2, ensure_ascii=False) + "\n")
+    if names:
+        print(f"method names from {BLINDING.relative_to(ROOT)} (images keep their blinded file names)")
     print(f"wrote {OUT.relative_to(ROOT)}: {len(samples)} questions ({', '.join(order)}), methods: {', '.join(sorted(methods[0]))}")
 
 

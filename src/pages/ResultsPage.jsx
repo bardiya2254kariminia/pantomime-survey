@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
 import { app, isFirebaseConfigured } from '../config/firebase.js'
 import { fetchAllResponses } from '../lib/responses.js'
-import { methodStats, perSampleWinners, responsesToCsv, statsToCsv, download } from '../lib/report.js'
+import { methodStats, perSampleWinners, responsesToCsv, statsToCsv, responsesWithNames, download } from '../lib/report.js'
 
 // One-hue ordinal ramp (dark = better rank), validated with the dataviz palette checker.
 const RANK_RAMPS = {
@@ -144,14 +144,14 @@ function RankBars({ stats, nRanks }) {
           <tbody>
             {stats.map((s) => (
               <tr key={s.method} className="border-b border-slate-100 last:border-0">
-                <td className="py-2.5 pr-3 font-medium text-slate-800 whitespace-nowrap">{s.method}</td>
+                <td className="py-2.5 pr-3 font-medium text-slate-800 whitespace-nowrap">{s.label}</td>
                 <td className="py-2.5 pr-3">
-                  <div className="flex gap-[2px] h-4" role="img" aria-label={`${s.method}: ${s.counts.map((c, i) => `${c} × ${ordinal(i)}`).join(', ')}`}>
+                  <div className="flex gap-[2px] h-4" role="img" aria-label={`${s.label}: ${s.counts.map((c, i) => `${c} × ${ordinal(i)}`).join(', ')}`}>
                     {s.counts.map((c, i) =>
                       c ? (
                         <div
                           key={i}
-                          title={`${s.method}: ${c} × ${ordinal(i)} place`}
+                          title={`${s.label}: ${c} × ${ordinal(i)} place`}
                           className="h-4 first:rounded-l last:rounded-r hover:opacity-80"
                           style={{ width: `${(c / maxTotal) * 100}%`, background: colors[i] }}
                         />
@@ -277,7 +277,7 @@ export default function ResultsPage({ samples }) {
                 <button onClick={() => download(`method_summary_${stamp}.csv`, statsToCsv(stats))} className="bg-white border border-slate-300 hover:border-slate-400 text-slate-700 text-sm font-semibold px-4 py-2 rounded-lg">
                   Method summary (CSV)
                 </button>
-                <button onClick={() => download(`responses_${stamp}.json`, JSON.stringify(sorted, null, 2), 'application/json')} className="bg-white border border-slate-300 hover:border-slate-400 text-slate-700 text-sm font-semibold px-4 py-2 rounded-lg">
+                <button onClick={() => download(`responses_${stamp}.json`, JSON.stringify(responsesWithNames(sorted), null, 2), 'application/json')} className="bg-white border border-slate-300 hover:border-slate-400 text-slate-700 text-sm font-semibold px-4 py-2 rounded-lg">
                   Raw data (JSON)
                 </button>
               </div>
