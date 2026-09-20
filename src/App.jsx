@@ -59,10 +59,21 @@ export default function App() {
   const [session, setSession] = useState(() => {
     const saved = loadProgress(study.id)
     // Only resume sessions whose questions and stage still exist (a saved 'consent' stage would render nothing).
+    //
+    // The output order is checked too, and against the CURRENT method names. A session
+    // saved before the questions changed holds method keys that no longer index
+    // sample.outputs, so resuming it would show blank tiles and, worse, record answers
+    // under names this study no longer uses. Starting over is the honest outcome.
+    const methodsMatch = (id) => {
+      const now = Object.keys(samples.find((s) => s.id === id)?.outputs ?? {})
+      const then = saved.outputOrder?.[id]
+      return Array.isArray(then) && then.length === now.length && then.every((m) => now.includes(m))
+    }
     const valid =
       saved &&
       Object.values(STAGE).includes(saved.stage) &&
-      saved.questionOrder.every((id) => samples.some((s) => s.id === id))
+      saved.questionOrder.every((id) => samples.some((s) => s.id === id)) &&
+      saved.questionOrder.every(methodsMatch)
     return valid ? saved : newSession()
   })
 

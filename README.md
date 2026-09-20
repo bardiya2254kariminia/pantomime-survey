@@ -201,7 +201,32 @@ baseline) and every response. Answers stored before the rename hold a code (`Met
 `rank1_method` beside each one and are counted as the same baseline, so old and new data add up.
 
 `scripts/fetch_responses.py` is the same thing with flags (`--key`, `--out`, `--project`, `--database`,
-`--collection`, `--study-id`, `--include-tests`) if you would rather call it directly.
+`--collection`, `--study-id`, `--include-tests`) if you would rather call it directly. Both find
+`serviceAccountKey.json` next to `package.json` on their own.
+
+### Answers stored before the rename
+
+If a response was submitted while a browser still had the old bundle cached, its rankings hold codes
+(`Method_F`). The export resolves those anyway, so nothing is lost — but to make the documents read
+correctly in the Firebase console too:
+
+```bash
+python3 scripts/rename_stored_methods.py            # dry run: lists what would change
+python3 scripts/rename_stored_methods.py --apply    # rewrite them
+```
+
+It touches only `rankings[].rank<N>` and `rankings[].display_order`, only values listed in
+`method_blinding.json`, and saves the untouched originals to `results/before_rename_<date>.json`
+first. Running it twice is safe. It needs the service-account key, because `firestore.rules` says
+`allow update: if false` and only a service account bypasses that.
+
+### After a deploy, hard-refresh
+
+GitHub Pages serves `index.html` with `cache-control: max-age=600`, so for ten minutes after
+`npm run deploy` a browser that visited earlier keeps running the **previous** bundle. If you test
+immediately after deploying, hard-refresh (Ctrl+Shift+R) or the answers you submit come from the old
+code. A half-finished session is also discarded on resume when the method set has changed, rather
+than being completed against names the study no longer uses.
 
 ## 6. Get the report
 
@@ -254,6 +279,7 @@ scripts/build_questions_from_evals.py  eval pairs → question folders (+ the me
 scripts/build_samples.py   folders → samples.json (applies the method names)
 scripts/fetch_responses.py Firestore → one JSON file of every answer
 scripts/fetch_responses.sh the same, with the credential and dependency handling
+scripts/rename_stored_methods.py  rewrites codes into baseline names in already-stored answers
 scripts/make_demo_images.py placeholder images
 firestore.rules            who may write and read responses
 setup.sh                   builds a double-click Windows bundle (build/pantomime-survey-windows.zip)

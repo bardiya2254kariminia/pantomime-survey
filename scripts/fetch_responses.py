@@ -63,7 +63,10 @@ def access_token(key_path: str | None, given: str | None) -> str:
     if given:
         return given
 
+    # Same order the shell wrapper uses, so calling either one behaves identically.
     key_path = key_path or os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+    if not key_path and (ROOT / "serviceAccountKey.json").is_file():
+        key_path = str(ROOT / "serviceAccountKey.json")
     if not key_path:
         die("no credential",
             "pass --key <serviceAccountKey.json>, set GOOGLE_APPLICATION_CREDENTIALS, "
@@ -211,7 +214,8 @@ def parse_args(argv=None):
         description="Download the study responses from Firestore into one JSON file.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     p.add_argument("--key", default="", metavar="FILE",
-                   help="service-account JSON key (else GOOGLE_APPLICATION_CREDENTIALS)")
+                   help="service-account JSON key (else GOOGLE_APPLICATION_CREDENTIALS, "
+                        "else ./serviceAccountKey.json)")
     p.add_argument("--access-token", default="", metavar="TOKEN",
                    help="use this OAuth token instead of a key file")
     p.add_argument("--out", default="results/responses_<date>.json",
