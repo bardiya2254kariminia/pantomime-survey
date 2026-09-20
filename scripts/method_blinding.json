@@ -1,0 +1,11 @@
+{
+  "Method_A": "Edit-Transfer",
+  "Method_B": "Flux2-Klein-9B",
+  "Method_C": "GPTImage-2.5-Sunburst",
+  "Method_D": "LoRWeB",
+  "Method_E": "NanoBanana-2",
+  "Method_F": "PanToMime",
+  "Method_G": "Qwen-Image-Edit-2511",
+  "Method_H": "RelationAdapter",
+  "Method_I": "VisualCloze"
+}

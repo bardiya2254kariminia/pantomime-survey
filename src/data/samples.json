@@ -5,19 +5,24 @@
     "a_prime": "images/Questions/q1/img_a_prime.png",
     "b": "images/Questions/q1/img_b.png",
     "camera": {
-      "azimuth": -40,
-      "elevation": 0,
-      "zoom": 1
+      "azimuth": -90,
+      "elevation": 30,
+      "zoom": 0.5
     },
     "edits": [
-      "jumping"
+      "raise hands",
+      "black and white pencil sketch style"
     ],
     "outputs": {
       "Method_A": "images/Questions/q1/Method_A.png",
       "Method_B": "images/Questions/q1/Method_B.png",
       "Method_C": "images/Questions/q1/Method_C.png",
       "Method_D": "images/Questions/q1/Method_D.png",
-      "Method_E": "images/Questions/q1/Method_E.png"
+      "Method_E": "images/Questions/q1/Method_E.png",
+      "Method_F": "images/Questions/q1/Method_F.png",
+      "Method_G": "images/Questions/q1/Method_G.png",
+      "Method_H": "images/Questions/q1/Method_H.png",
+      "Method_I": "images/Questions/q1/Method_I.png"
     }
   },
   {
@@ -26,20 +31,24 @@
     "a_prime": "images/Questions/q2/img_a_prime.png",
     "b": "images/Questions/q2/img_b.png",
     "camera": {
-      "azimuth": 35,
-      "elevation": 20,
-      "zoom": 1
+      "azimuth": 90,
+      "elevation": 30,
+      "zoom": 0.5
     },
     "edits": [
-      "jumping",
-      "sunglasses"
+      "unfold wings",
+      "open mouth"
     ],
     "outputs": {
       "Method_A": "images/Questions/q2/Method_A.png",
       "Method_B": "images/Questions/q2/Method_B.png",
       "Method_C": "images/Questions/q2/Method_C.png",
       "Method_D": "images/Questions/q2/Method_D.png",
-      "Method_E": "images/Questions/q2/Method_E.png"
+      "Method_E": "images/Questions/q2/Method_E.png",
+      "Method_F": "images/Questions/q2/Method_F.png",
+      "Method_G": "images/Questions/q2/Method_G.png",
+      "Method_H": "images/Questions/q2/Method_H.png",
+      "Method_I": "images/Questions/q2/Method_I.png"
     }
   },
   {
@@ -48,19 +57,460 @@
     "a_prime": "images/Questions/q3/img_a_prime.png",
     "b": "images/Questions/q3/img_b.png",
     "camera": {
-      "azimuth": -60,
-      "elevation": -15,
-      "zoom": 1.5
+      "azimuth": -135,
+      "elevation": -30,
+      "zoom": 2
     },
     "edits": [
-      "raising arms"
+      "turn on the car's lights",
+      "oil painting style"
     ],
     "outputs": {
       "Method_A": "images/Questions/q3/Method_A.png",
       "Method_B": "images/Questions/q3/Method_B.png",
       "Method_C": "images/Questions/q3/Method_C.png",
       "Method_D": "images/Questions/q3/Method_D.png",
-      "Method_E": "images/Questions/q3/Method_E.png"
+      "Method_E": "images/Questions/q3/Method_E.png",
+      "Method_F": "images/Questions/q3/Method_F.png",
+      "Method_G": "images/Questions/q3/Method_G.png",
+      "Method_H": "images/Questions/q3/Method_H.png",
+      "Method_I": "images/Questions/q3/Method_I.png"
+    }
+  },
+  {
+    "id": "q4",
+    "a": "images/Questions/q4/img_a.png",
+    "a_prime": "images/Questions/q4/img_a_prime.png",
+    "b": "images/Questions/q4/img_b.png",
+    "camera": {
+      "azimuth": 135,
+      "elevation": -30,
+      "zoom": 1
+    },
+    "edits": [
+      "change the season to spring"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q4/Method_A.png",
+      "Method_B": "images/Questions/q4/Method_B.png",
+      "Method_C": "images/Questions/q4/Method_C.png",
+      "Method_D": "images/Questions/q4/Method_D.png",
+      "Method_E": "images/Questions/q4/Method_E.png",
+      "Method_F": "images/Questions/q4/Method_F.png",
+      "Method_G": "images/Questions/q4/Method_G.png",
+      "Method_H": "images/Questions/q4/Method_H.png",
+      "Method_I": "images/Questions/q4/Method_I.png"
+    }
+  },
+  {
+    "id": "q5",
+    "a": "images/Questions/q5/img_a.png",
+    "a_prime": "images/Questions/q5/img_a_prime.png",
+    "b": "images/Questions/q5/img_b.png",
+    "camera": {
+      "azimuth": -90,
+      "elevation": 30,
+      "zoom": 0.5
+    },
+    "edits": [
+      "add a baseball cap",
+      "sitting pose"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q5/Method_A.png",
+      "Method_B": "images/Questions/q5/Method_B.png",
+      "Method_C": "images/Questions/q5/Method_C.png",
+      "Method_D": "images/Questions/q5/Method_D.png",
+      "Method_E": "images/Questions/q5/Method_E.png",
+      "Method_F": "images/Questions/q5/Method_F.png",
+      "Method_G": "images/Questions/q5/Method_G.png",
+      "Method_H": "images/Questions/q5/Method_H.png",
+      "Method_I": "images/Questions/q5/Method_I.png"
+    }
+  },
+  {
+    "id": "q6",
+    "a": "images/Questions/q6/img_a.png",
+    "a_prime": "images/Questions/q6/img_a_prime.png",
+    "b": "images/Questions/q6/img_b.png",
+    "camera": {
+      "azimuth": -135,
+      "elevation": 0,
+      "zoom": 1
+    },
+    "edits": [
+      "jumping pose"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q6/Method_A.png",
+      "Method_B": "images/Questions/q6/Method_B.png",
+      "Method_C": "images/Questions/q6/Method_C.png",
+      "Method_D": "images/Questions/q6/Method_D.png",
+      "Method_E": "images/Questions/q6/Method_E.png",
+      "Method_F": "images/Questions/q6/Method_F.png",
+      "Method_G": "images/Questions/q6/Method_G.png",
+      "Method_H": "images/Questions/q6/Method_H.png",
+      "Method_I": "images/Questions/q6/Method_I.png"
+    }
+  },
+  {
+    "id": "q7",
+    "a": "images/Questions/q7/img_a.png",
+    "a_prime": "images/Questions/q7/img_a_prime.png",
+    "b": "images/Questions/q7/img_b.png",
+    "camera": {
+      "azimuth": -90,
+      "elevation": 30,
+      "zoom": 1
+    },
+    "edits": [
+      "sad expression"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q7/Method_A.png",
+      "Method_B": "images/Questions/q7/Method_B.png",
+      "Method_C": "images/Questions/q7/Method_C.png",
+      "Method_D": "images/Questions/q7/Method_D.png",
+      "Method_E": "images/Questions/q7/Method_E.png",
+      "Method_F": "images/Questions/q7/Method_F.png",
+      "Method_G": "images/Questions/q7/Method_G.png",
+      "Method_H": "images/Questions/q7/Method_H.png",
+      "Method_I": "images/Questions/q7/Method_I.png"
+    }
+  },
+  {
+    "id": "q8",
+    "a": "images/Questions/q8/img_a.png",
+    "a_prime": "images/Questions/q8/img_a_prime.png",
+    "b": "images/Questions/q8/img_b.png",
+    "camera": {
+      "azimuth": -45,
+      "elevation": -30,
+      "zoom": 2
+    },
+    "edits": [
+      "add a black top hat",
+      "sitting pose"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q8/Method_A.png",
+      "Method_B": "images/Questions/q8/Method_B.png",
+      "Method_C": "images/Questions/q8/Method_C.png",
+      "Method_D": "images/Questions/q8/Method_D.png",
+      "Method_E": "images/Questions/q8/Method_E.png",
+      "Method_F": "images/Questions/q8/Method_F.png",
+      "Method_G": "images/Questions/q8/Method_G.png",
+      "Method_H": "images/Questions/q8/Method_H.png",
+      "Method_I": "images/Questions/q8/Method_I.png"
+    }
+  },
+  {
+    "id": "q9",
+    "a": "images/Questions/q9/img_a.png",
+    "a_prime": "images/Questions/q9/img_a_prime.png",
+    "b": "images/Questions/q9/img_b.png",
+    "camera": {
+      "azimuth": 90,
+      "elevation": 30,
+      "zoom": 0.5
+    },
+    "edits": [
+      "add a cowboy hat",
+      "sitting pose"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q9/Method_A.png",
+      "Method_B": "images/Questions/q9/Method_B.png",
+      "Method_C": "images/Questions/q9/Method_C.png",
+      "Method_D": "images/Questions/q9/Method_D.png",
+      "Method_E": "images/Questions/q9/Method_E.png",
+      "Method_F": "images/Questions/q9/Method_F.png",
+      "Method_G": "images/Questions/q9/Method_G.png",
+      "Method_H": "images/Questions/q9/Method_H.png",
+      "Method_I": "images/Questions/q9/Method_I.png"
+    }
+  },
+  {
+    "id": "q10",
+    "a": "images/Questions/q10/img_a.png",
+    "a_prime": "images/Questions/q10/img_a_prime.png",
+    "b": "images/Questions/q10/img_b.png",
+    "camera": {
+      "azimuth": -45,
+      "elevation": 0,
+      "zoom": 1
+    },
+    "edits": [
+      "change the shirt to a barcelona jersey",
+      "oil painting style"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q10/Method_A.png",
+      "Method_B": "images/Questions/q10/Method_B.png",
+      "Method_C": "images/Questions/q10/Method_C.png",
+      "Method_D": "images/Questions/q10/Method_D.png",
+      "Method_E": "images/Questions/q10/Method_E.png",
+      "Method_F": "images/Questions/q10/Method_F.png",
+      "Method_G": "images/Questions/q10/Method_G.png",
+      "Method_H": "images/Questions/q10/Method_H.png",
+      "Method_I": "images/Questions/q10/Method_I.png"
+    }
+  },
+  {
+    "id": "q11",
+    "a": "images/Questions/q11/img_a.png",
+    "a_prime": "images/Questions/q11/img_a_prime.png",
+    "b": "images/Questions/q11/img_b.png",
+    "camera": {
+      "azimuth": 135,
+      "elevation": -30,
+      "zoom": 2
+    },
+    "edits": [
+      "add a witch hat",
+      "sitting pose"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q11/Method_A.png",
+      "Method_B": "images/Questions/q11/Method_B.png",
+      "Method_C": "images/Questions/q11/Method_C.png",
+      "Method_D": "images/Questions/q11/Method_D.png",
+      "Method_E": "images/Questions/q11/Method_E.png",
+      "Method_F": "images/Questions/q11/Method_F.png",
+      "Method_G": "images/Questions/q11/Method_G.png",
+      "Method_H": "images/Questions/q11/Method_H.png",
+      "Method_I": "images/Questions/q11/Method_I.png"
+    }
+  },
+  {
+    "id": "q12",
+    "a": "images/Questions/q12/img_a.png",
+    "a_prime": "images/Questions/q12/img_a_prime.png",
+    "b": "images/Questions/q12/img_b.png",
+    "camera": {
+      "azimuth": -135,
+      "elevation": 0,
+      "zoom": 1
+    },
+    "edits": [
+      "fireball held between the hands"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q12/Method_A.png",
+      "Method_B": "images/Questions/q12/Method_B.png",
+      "Method_C": "images/Questions/q12/Method_C.png",
+      "Method_D": "images/Questions/q12/Method_D.png",
+      "Method_E": "images/Questions/q12/Method_E.png",
+      "Method_F": "images/Questions/q12/Method_F.png",
+      "Method_G": "images/Questions/q12/Method_G.png",
+      "Method_H": "images/Questions/q12/Method_H.png",
+      "Method_I": "images/Questions/q12/Method_I.png"
+    }
+  },
+  {
+    "id": "q13",
+    "a": "images/Questions/q13/img_a.png",
+    "a_prime": "images/Questions/q13/img_a_prime.png",
+    "b": "images/Questions/q13/img_b.png",
+    "camera": {
+      "azimuth": -90,
+      "elevation": 0,
+      "zoom": 1
+    },
+    "edits": [
+      "ice shard held between the hands"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q13/Method_A.png",
+      "Method_B": "images/Questions/q13/Method_B.png",
+      "Method_C": "images/Questions/q13/Method_C.png",
+      "Method_D": "images/Questions/q13/Method_D.png",
+      "Method_E": "images/Questions/q13/Method_E.png",
+      "Method_F": "images/Questions/q13/Method_F.png",
+      "Method_G": "images/Questions/q13/Method_G.png",
+      "Method_H": "images/Questions/q13/Method_H.png",
+      "Method_I": "images/Questions/q13/Method_I.png"
+    }
+  },
+  {
+    "id": "q14",
+    "a": "images/Questions/q14/img_a.png",
+    "a_prime": "images/Questions/q14/img_a_prime.png",
+    "b": "images/Questions/q14/img_b.png",
+    "camera": {
+      "azimuth": -90,
+      "elevation": 30,
+      "zoom": 0.5
+    },
+    "edits": [
+      "raise hands",
+      "black and white pencil sketch style"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q14/Method_A.png",
+      "Method_B": "images/Questions/q14/Method_B.png",
+      "Method_C": "images/Questions/q14/Method_C.png",
+      "Method_D": "images/Questions/q14/Method_D.png",
+      "Method_E": "images/Questions/q14/Method_E.png",
+      "Method_F": "images/Questions/q14/Method_F.png",
+      "Method_G": "images/Questions/q14/Method_G.png",
+      "Method_H": "images/Questions/q14/Method_H.png",
+      "Method_I": "images/Questions/q14/Method_I.png"
+    }
+  },
+  {
+    "id": "q15",
+    "a": "images/Questions/q15/img_a.png",
+    "a_prime": "images/Questions/q15/img_a_prime.png",
+    "b": "images/Questions/q15/img_b.png",
+    "camera": {
+      "azimuth": 135,
+      "elevation": 30,
+      "zoom": 0.5
+    },
+    "edits": [
+      "unfold wings",
+      "open mouth"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q15/Method_A.png",
+      "Method_B": "images/Questions/q15/Method_B.png",
+      "Method_C": "images/Questions/q15/Method_C.png",
+      "Method_D": "images/Questions/q15/Method_D.png",
+      "Method_E": "images/Questions/q15/Method_E.png",
+      "Method_F": "images/Questions/q15/Method_F.png",
+      "Method_G": "images/Questions/q15/Method_G.png",
+      "Method_H": "images/Questions/q15/Method_H.png",
+      "Method_I": "images/Questions/q15/Method_I.png"
+    }
+  },
+  {
+    "id": "q16",
+    "a": "images/Questions/q16/img_a.png",
+    "a_prime": "images/Questions/q16/img_a_prime.png",
+    "b": "images/Questions/q16/img_b.png",
+    "camera": {
+      "azimuth": 90,
+      "elevation": 30,
+      "zoom": 0.5
+    },
+    "edits": [
+      "turn on the car's lights",
+      "oil painting style"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q16/Method_A.png",
+      "Method_B": "images/Questions/q16/Method_B.png",
+      "Method_C": "images/Questions/q16/Method_C.png",
+      "Method_D": "images/Questions/q16/Method_D.png",
+      "Method_E": "images/Questions/q16/Method_E.png",
+      "Method_F": "images/Questions/q16/Method_F.png",
+      "Method_G": "images/Questions/q16/Method_G.png",
+      "Method_H": "images/Questions/q16/Method_H.png",
+      "Method_I": "images/Questions/q16/Method_I.png"
+    }
+  },
+  {
+    "id": "q17",
+    "a": "images/Questions/q17/img_a.png",
+    "a_prime": "images/Questions/q17/img_a_prime.png",
+    "b": "images/Questions/q17/img_b.png",
+    "camera": {
+      "azimuth": -90,
+      "elevation": -30,
+      "zoom": 1
+    },
+    "edits": [
+      "change the season to spring"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q17/Method_A.png",
+      "Method_B": "images/Questions/q17/Method_B.png",
+      "Method_C": "images/Questions/q17/Method_C.png",
+      "Method_D": "images/Questions/q17/Method_D.png",
+      "Method_E": "images/Questions/q17/Method_E.png",
+      "Method_F": "images/Questions/q17/Method_F.png",
+      "Method_G": "images/Questions/q17/Method_G.png",
+      "Method_H": "images/Questions/q17/Method_H.png",
+      "Method_I": "images/Questions/q17/Method_I.png"
+    }
+  },
+  {
+    "id": "q18",
+    "a": "images/Questions/q18/img_a.png",
+    "a_prime": "images/Questions/q18/img_a_prime.png",
+    "b": "images/Questions/q18/img_b.png",
+    "camera": {
+      "azimuth": 45,
+      "elevation": -30,
+      "zoom": 2
+    },
+    "edits": [
+      "add a baseball cap",
+      "sitting pose"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q18/Method_A.png",
+      "Method_B": "images/Questions/q18/Method_B.png",
+      "Method_C": "images/Questions/q18/Method_C.png",
+      "Method_D": "images/Questions/q18/Method_D.png",
+      "Method_E": "images/Questions/q18/Method_E.png",
+      "Method_F": "images/Questions/q18/Method_F.png",
+      "Method_G": "images/Questions/q18/Method_G.png",
+      "Method_H": "images/Questions/q18/Method_H.png",
+      "Method_I": "images/Questions/q18/Method_I.png"
+    }
+  },
+  {
+    "id": "q19",
+    "a": "images/Questions/q19/img_a.png",
+    "a_prime": "images/Questions/q19/img_a_prime.png",
+    "b": "images/Questions/q19/img_b.png",
+    "camera": {
+      "azimuth": 90,
+      "elevation": 30,
+      "zoom": 0.5
+    },
+    "edits": [
+      "raise hands",
+      "black and white pencil sketch style"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q19/Method_A.png",
+      "Method_B": "images/Questions/q19/Method_B.png",
+      "Method_C": "images/Questions/q19/Method_C.png",
+      "Method_D": "images/Questions/q19/Method_D.png",
+      "Method_E": "images/Questions/q19/Method_E.png",
+      "Method_F": "images/Questions/q19/Method_F.png",
+      "Method_G": "images/Questions/q19/Method_G.png",
+      "Method_H": "images/Questions/q19/Method_H.png",
+      "Method_I": "images/Questions/q19/Method_I.png"
+    }
+  },
+  {
+    "id": "q20",
+    "a": "images/Questions/q20/img_a.png",
+    "a_prime": "images/Questions/q20/img_a_prime.png",
+    "b": "images/Questions/q20/img_b.png",
+    "camera": {
+      "azimuth": -90,
+      "elevation": 0,
+      "zoom": 1
+    },
+    "edits": [
+      "unfold wings",
+      "open mouth"
+    ],
+    "outputs": {
+      "Method_A": "images/Questions/q20/Method_A.png",
+      "Method_B": "images/Questions/q20/Method_B.png",
+      "Method_C": "images/Questions/q20/Method_C.png",
+      "Method_D": "images/Questions/q20/Method_D.png",
+      "Method_E": "images/Questions/q20/Method_E.png",
+      "Method_F": "images/Questions/q20/Method_F.png",
+      "Method_G": "images/Questions/q20/Method_G.png",
+      "Method_H": "images/Questions/q20/Method_H.png",
+      "Method_I": "images/Questions/q20/Method_I.png"
     }
   }
 ]

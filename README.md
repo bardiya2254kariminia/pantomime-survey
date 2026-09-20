@@ -37,10 +37,61 @@ this project lives on). It writes `build/pantomime-survey-windows.zip`, containi
 builds of all packages plus a portable Node.js. Copy the zip to Windows, extract it to a short path such as
 `C:\pantomime-survey`, and double-click `start-windows.bat` (or `start-windows-local.bat` for local mode).
 
+### Live preview on this Vast instance
+
+`supervisorctl status pantomime-survey` runs the Vite dev server on `127.0.0.1:15173`, published by
+Caddy on external port 10100. Open the URL that `vast-capabilities` reports for **PanToMime Survey**
+(or `http://$PUBLIC_IPADDR:$VAST_TCP_PORT_10100/?token=$OPEN_BUTTON_TOKEN`) and the page hot-reloads
+as soon as any file here changes — no rebuild, no restart. `HMR_CLIENT_PORT` in
+`/opt/supervisor-scripts/pantomime-survey.sh` is what makes the reload websocket survive the proxy.
+
+```bash
+supervisorctl restart pantomime-survey    # only needed if the server itself dies
+tail -f /var/log/portal/pantomime-survey.log
+```
+
 Answers from `npm run dev` are saved with `study_id` = `pantomime-v1-dev`. The results page hides them unless
 you tick "Include test runs", so testing never mixes with real data.
 
-## 2. Add your questions
+## 2. The questions
+
+The 20 questions in `public/images/Questions/` are built from the ablation eval pairs by
+`scripts/build_questions_from_evals.py`. Edit its `SELECTION` list (one `eval<N>` key per question,
+in the order participants see them) and re-run it:
+
+```bash
+python3 scripts/build_questions_from_evals.py --dry-run   # show what it would write
+python3 scripts/build_questions_from_evals.py             # rewrite q1..qN
+npm run samples                                           # then regenerate samples.json
+```
+
+It copies A, A' and B from the dataset and one output per method from `/workspace/ablation_results`,
+and writes each `meta.json` from the pair's own camera delta and prompts. B' (the ground truth) is
+never copied: the participant is asked to imagine it.
+
+The current 20 were hand-picked from the pairs the authors reviewed, for a large A → A' camera move
+(17 of the 20 turn at least 90°) and a wide spread of prompts (all 13 reviewed prompt groups appear),
+then ordered so no two neighbouring questions share a prompt.
+
+Two files it also writes, both outside `public/` so participants never receive them:
+
+| File | What it holds |
+|---|---|
+| `scripts/method_blinding.json` | which baseline each `Method_X` code is — the key to the report |
+| `scripts/question_sources.json` | per question: the eval key, the four dataset paths (B' included), both cameras, and the generated meta |
+
+`meta.json` is derived, not typed by hand. Its conventions, verified against the dataset:
+
+- **azimuth** passes through unchanged; negative means the camera orbits **right** in both the dataset
+  and `src/lib/camera.js`.
+- **elevation** passes through unchanged; positive moves **up**.
+- **zoom** comes from the dataset's `distance` *label* (1 = medium shot, 3 = wide shot). On controlled
+  pairs — same azimuth and elevation, distance 1 vs 3 — the subject changes by about 2×, so 1 → 3 is
+  `0.5` (zoom out) and 3 → 1 is `2` (zoom in).
+- Azimuth deltas are wrapped into (−180°, 180°]: the index stores A' minus A literally, so an orbit
+  from +90° to −135° is recorded as −225° where the camera actually travelled +135°.
+
+## 2b. Add your own questions by hand
 
 Each question is one folder in `public/images/Questions/`, named `q1`, `q2`, `q3`, …:
 
@@ -86,11 +137,9 @@ npm run samples      # writes src/data/samples.json
   one per line in `public/images/Questions/order.txt`.
 - The script stops with a message if a meta.json value is invalid, and warns about keys it doesn't know
   (a typo such as `elevaton`).
-- `q1`–`q3` hold placeholder images, and their meta.json values are only examples. Replace both, and replace
-  `public/welcome/*` (the welcome-page example) with real images.
-- **Blinding:** the page never shows method names, but the image URL does (`…/PanToMime.png`), exactly as on
-  the reference site. If that matters to you, name the files with neutral codes (`m1.png`, `m2.png`, …) and
-  keep the mapping yourself.
+- **Blinding:** the page never shows method names, but the image URL does, exactly as on the reference site.
+  That is why the generated questions use neutral codes (`Method_A.png`, …) with the key in
+  `scripts/method_blinding.json`. Keep that shape if you add folders by hand.
 - All participant-facing text is in `src/config/study.js`: title, task description, welcome example and number
   of ranks. When you change the questions after the study has started, change `id` there too, so responses
   from the two versions can be told apart.
@@ -172,6 +221,7 @@ src/
   components/              image with fallback, lightbox, arrows, edit/camera icons and panel, local-mode banner
 public/images/Questions/   question folders q1, q2, … (the current ones are placeholders)
 public/welcome/            welcome-page example images
+scripts/build_questions_from_evals.py  eval pairs → question folders (+ the blinding key)
 scripts/build_samples.py   folders → samples.json
 scripts/make_demo_images.py placeholder images
 firestore.rules            who may write and read responses
