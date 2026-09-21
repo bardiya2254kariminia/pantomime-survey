@@ -29,7 +29,30 @@ export const study = {
     // The edits in the A → A′ example; B′ is described as having the same ones.
     edits: ['Jumping'],
     // Signed azimuth in degrees: negative orbits to the right, positive to the left.
-    cameraAzimuth: -90,
+    // Same convention as the dataset: B → B′ is input_5 (0°) → edit_8 (+90°).
+    cameraAzimuth: 90,
+    // Where the camera stands for A and B on the welcome-page dome (same sign convention;
+    // 0 = front, facing the subject). A′ and B′ are these plus cameraAzimuth.
+    poses: { a: -90, b: 0 },
+    // Wrong B′ outputs shown next to the ideal one, each missing one of the two changes.
+    // From pantomime/datasets/train/prompt_01/sample_03 (B = input_5, B′ = edit_8).
+    wrongOutputs: [
+      {
+        src: 'welcome/img_b_wrong_camera.png', // edit_6
+        edit: 'The cat is jumping',
+        camera: 'The camera stayed at the front',
+        cameraOk: false,
+        editOk: true,
+      },
+      {
+        src: 'welcome/img_b_no_edit.png', // input_7
+        edit: 'The cat is still sitting',
+        camera: 'The camera moved to the side',
+        cameraOk: true,
+        editOk: false,
+      },
+    ],
+    idealOutput: { edit: 'The cat is jumping', camera: 'The camera moved to the side' },
   },
 
   // The two things a participant has to keep track of, shown as chips above the example.

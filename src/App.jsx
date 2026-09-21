@@ -81,15 +81,30 @@ export default function App() {
     if (session.stage !== STAGE.WELCOME) saveProgress(session)
   }, [session])
 
-  const update = useCallback((patch) => setSession((s) => ({ ...s, ...patch })), [])
-
-  const start = useCallback(() => update({ stage: STAGE.SURVEY, startedAt: Date.now() }), [update])
+  // Coming back from the first question keeps the original start time and answers.
+  const start = useCallback(
+    () => setSession((s) => ({ ...s, stage: STAGE.SURVEY, startedAt: s.rankings.length ? s.startedAt : Date.now() })),
+    [],
+  )
 
   const next = useCallback((ranking) => {
     setSession((s) => {
       const rankings = [...s.rankings.filter((r) => r.sample_id !== ranking.sample_id), ranking]
       const done = s.index + 1 >= s.questionOrder.length
       return { ...s, rankings, index: done ? s.index : s.index + 1, stage: done ? STAGE.THANKYOU : STAGE.SURVEY }
+    })
+    window.scrollTo(0, 0)
+  }, [])
+
+  // One step back: previous question, or the welcome page from the first one. `draft` is the
+  // (possibly incomplete) ranking of the page being left, so it is still there on return.
+  // Only complete rankings can be submitted, because Next is needed to get past every question.
+  const back = useCallback((draft) => {
+    setSession((s) => {
+      const rankings = draft ? [...s.rankings.filter((r) => r.sample_id !== draft.sample_id), draft] : s.rankings
+      if (s.stage === STAGE.THANKYOU) return { ...s, stage: STAGE.SURVEY }
+      if (s.index === 0) return { ...s, rankings, stage: STAGE.WELCOME }
+      return { ...s, rankings, index: s.index - 1 }
     })
     window.scrollTo(0, 0)
   }, [])
@@ -123,12 +138,14 @@ export default function App() {
           outputOrder={session.outputOrder[sample.id]}
           currentIndex={session.index}
           total={session.questionOrder.length}
+          initial={session.rankings.find((r) => r.sample_id === sample.id)}
           onNext={next}
+          onBack={back}
           onRestart={restart}
         />
       )}
       {session.stage === STAGE.THANKYOU && (
-        <ThankYouPage session={session} onSubmitted={clearProgress} />
+        <ThankYouPage session={session} onSubmitted={clearProgress} onBack={() => back()} />
       )}
     </>
   )

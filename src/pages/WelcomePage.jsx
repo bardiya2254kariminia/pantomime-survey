@@ -4,6 +4,9 @@ import { asset } from '../lib/asset.js'
 import { cameraMoves } from '../lib/camera.js'
 import { CameraOrbit, EditsIcon } from '../components/ChangeIcons.jsx'
 import { ArrowIcon, FlowArrow } from '../components/Arrows.jsx'
+import CameraDome from '../components/CameraDome.jsx'
+import Img from '../components/Img.jsx'
+import Lightbox from '../components/Lightbox.jsx'
 
 // The two dimensions a participant must track. Clicking one explains what it means.
 function LegendChip({ icon, title, value, open, onToggle, theme }) {
@@ -56,6 +59,71 @@ function Caption({ tone, children }) {
   )
 }
 
+function Mark({ ok }) {
+  return ok ? (
+    <span className="flex-shrink-0 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center" aria-label="correct">
+      <svg viewBox="0 0 16 16" className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.6" aria-hidden="true">
+        <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  ) : (
+    <span className="flex-shrink-0 w-4 h-4 rounded-full bg-red-500 text-white flex items-center justify-center" aria-label="wrong">
+      <svg viewBox="0 0 16 16" className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.6" aria-hidden="true">
+        <path d="M4.5 4.5l7 7m0-7l-7 7" strokeLinecap="round" />
+      </svg>
+    </span>
+  )
+}
+
+// One candidate B′: a green tick when both changes are right, a red cross otherwise.
+function Candidate({ src, n, edit, camera, editOk, cameraOk, onZoom }) {
+  const correct = editOk && cameraOk
+  return (
+    <div
+      className={`relative flex flex-col rounded-xl border-2 p-2 ${
+        correct ? 'border-emerald-400 bg-emerald-50/60' : 'border-red-200 bg-red-50/40'
+      }`}
+    >
+      <div className="relative">
+        <Img src={src} alt={`Candidate B′ ${n}`} onClick={onZoom} className={correct ? '' : 'opacity-80'} />
+        <span
+          role="checkbox"
+          aria-checked={correct}
+          aria-label={correct ? 'Correct answer' : 'Wrong answer'}
+          className={`absolute top-2 right-2 w-8 h-8 rounded-lg border-2 flex items-center justify-center shadow ${
+            correct ? 'bg-emerald-500 border-emerald-600 text-white' : 'bg-red-500 border-red-600 text-white'
+          }`}
+        >
+          <svg viewBox="0 0 16 16" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
+            {correct ? (
+              <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+            ) : (
+              <path d="M4.5 4.5l7 7m0-7l-7 7" strokeLinecap="round" />
+            )}
+          </svg>
+        </span>
+      </div>
+      <p className={`text-center text-sm font-bold mt-2 ${correct ? 'text-emerald-700' : 'text-red-600'}`}>
+        {correct ? 'Correct B′' : 'Wrong'}
+      </p>
+      <ul className="mt-1.5 space-y-1 text-xs text-slate-600">
+        <li className="flex items-center gap-1.5">
+          <Mark ok={editOk} />
+          <span>
+            <span className="font-semibold text-purple-700">Edit:</span> {edit}
+          </span>
+        </li>
+        <li className="flex items-center gap-1.5">
+          <Mark ok={cameraOk} />
+          <span>
+            <span className="font-semibold text-sky-700">Camera:</span> {camera}
+          </span>
+        </li>
+      </ul>
+    </div>
+  )
+}
+
 function Step({ n, title, children }) {
   return (
     <div className="flex gap-4">
@@ -82,6 +150,14 @@ export default function WelcomePage({ onStart }) {
     </>
   )
   const [openChip, setOpenChip] = useState(null)
+  const [zoom, setZoom] = useState(null)
+  const [wrongCamera, noEdit] = ex.wrongOutputs
+  // Ideal in the middle, so it isn't simply "the first one".
+  const candidates = [
+    { ...wrongCamera },
+    { src: ex.b_prime, ...ex.idealOutput, editOk: true, cameraOk: true },
+    { ...noEdit },
+  ]
   const toggle = (key) => setOpenChip((current) => (current === key ? null : key))
 
   return (
@@ -181,6 +257,30 @@ export default function WelcomePage({ onStart }) {
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7 mb-6">
+          <h2 className="text-xl font-semibold text-slate-800 mb-2">Where is the camera?</h2>
+          <p className="text-slate-600 leading-relaxed mb-4">
+            Picture the subject standing in the middle of a dome, facing the <strong>front</strong>. Every photo is taken by a
+            camera somewhere on that dome. Going from <strong>A</strong> to <strong>A′</strong>, the camera orbits around
+            the dog. <strong>B′</strong> must be taken after the <strong>same orbit</strong> around the cat.
+          </p>
+          <CameraDome example={ex} />
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7 mb-6">
+          <h2 className="text-xl font-semibold text-slate-800 mb-2">Which B′ is correct?</h2>
+          <p className="text-slate-600 leading-relaxed mb-4">
+            A correct B′ needs <strong>both</strong> changes: the same <span className="text-purple-700 font-semibold">edit</span>{' '}
+            ({edits.toLowerCase()}) <strong>and</strong> the same <span className="text-sky-700 font-semibold">camera move</span>.
+            Getting only one of them right is not enough. Rank such outputs lower.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {candidates.map((c, i) => (
+              <Candidate key={c.src} n={i + 1} {...c} onZoom={() => setZoom({ src: c.src, alt: `Candidate B′ ${i + 1}` })} />
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7 mb-6">
           <h2 className="text-xl font-semibold text-slate-800 mb-4">Your job in this study</h2>
           <div className="space-y-4">
             <Step n={1} title="Look at the images A and A′">See what changed between them.</Step>
@@ -210,6 +310,7 @@ export default function WelcomePage({ onStart }) {
           </button>
         </div>
       </div>
+      <Lightbox image={zoom} onClose={() => setZoom(null)} />
     </div>
   )
 }

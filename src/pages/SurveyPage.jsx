@@ -15,9 +15,17 @@ const rankName = (i) => ['Best', 'Second best', 'Third best'][i] ?? `${RANK_LABE
 // Tailwind needs literal class names, so map output count → large-screen column class.
 const LG_COLS = { 1: 'lg:grid-cols-1', 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4', 5: 'lg:grid-cols-5', 6: 'lg:grid-cols-6' }
 
-export default function SurveyPage({ sample, outputOrder, currentIndex, total, onNext, onRestart }) {
+export default function SurveyPage({ sample, outputOrder, currentIndex, total, initial, onNext, onBack, onRestart }) {
   const methods = outputOrder ?? Object.keys(sample.outputs)
-  const [ranks, setRanks] = useState({}) // method → rank index
+  // method → rank index, restored from an earlier visit to this question (via Previous).
+  const [ranks, setRanks] = useState(() => {
+    const restored = {}
+    RANK_LABELS.forEach((_, i) => {
+      const m = initial?.[`rank${i + 1}`]
+      if (m && methods.includes(m)) restored[m] = i
+    })
+    return restored
+  })
   const [zoom, setZoom] = useState(null)
   const shownAt = useRef(Date.now())
 
@@ -39,13 +47,14 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, o
     })
   }
 
-  function submit() {
+  // Time from earlier visits is carried over, so time_ms is the total spent on the question.
+  function ranking() {
     const result = { sample_id: sample.id }
     for (let i = 0; i < nRanks; i++) result[`rank${i + 1}`] = null
     for (const [m, r] of Object.entries(ranks)) result[`rank${r + 1}`] = m
     result.display_order = methods
-    result.time_ms = Date.now() - shownAt.current
-    onNext(result)
+    result.time_ms = (initial?.time_ms ?? 0) + Date.now() - shownAt.current
+    return result
   }
 
   const pct = (currentIndex / total) * 100
@@ -170,14 +179,24 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, o
         </div>
 
         <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => onBack(ranking())}
+              title={currentIndex === 0 ? 'Back to the instructions' : 'Back to the previous question'}
+              className="group inline-flex items-center gap-2 font-semibold text-base px-5 py-3 rounded-xl border border-slate-300 bg-white text-slate-600 hover:border-indigo-300 hover:text-indigo-700 transition-all duration-150 cursor-pointer"
+            >
+              <ArrowIcon direction="left" className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              Previous
+            </button>
+            <button
+              onClick={() => window.confirm('Start over? Your answers so far will be discarded.') && onRestart()}
+              className="text-sm text-slate-400 hover:text-slate-600 underline underline-offset-2"
+            >
+              Start over
+            </button>
+          </div>
           <button
-            onClick={() => window.confirm('Start over? Your answers so far will be discarded.') && onRestart()}
-            className="text-sm text-slate-400 hover:text-slate-600 underline underline-offset-2"
-          >
-            Start over
-          </button>
-          <button
-            onClick={submit}
+            onClick={() => onNext(ranking())}
             disabled={!complete}
             className={`group inline-flex items-center gap-2 font-semibold text-base px-8 py-3 rounded-xl shadow transition-all duration-150 ${
               complete

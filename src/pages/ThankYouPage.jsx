@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { submitResponse } from '../lib/responses.js'
+import { ArrowIcon } from '../components/Arrows.jsx'
 
-export default function ThankYouPage({ session, onSubmitted }) {
+export default function ThankYouPage({ session, onSubmitted, onBack }) {
   const [status, setStatus] = useState('saving')
   const [copied, setCopied] = useState(false)
   const started = useRef(false)
@@ -95,6 +96,14 @@ export default function ThankYouPage({ session, onSubmitted }) {
             <div className="bg-slate-50 rounded-xl p-4 text-left text-xs text-slate-600 overflow-auto max-h-64">
               <pre className="whitespace-pre-wrap break-all">{backup}</pre>
             </div>
+            {/* Only while nothing is saved: a saved response is final (Firestore rules forbid updates). */}
+            <button
+              onClick={onBack}
+              className="group inline-flex items-center gap-2 mt-5 text-sm font-semibold text-slate-500 hover:text-indigo-700 cursor-pointer"
+            >
+              <ArrowIcon direction="left" className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              Previous: back to the last question
+            </button>
           </div>
         )}
       </div>
