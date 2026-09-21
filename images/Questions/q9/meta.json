@@ -1,9 +1,8 @@
 {
   "camera": {
-    "azimuth": 90,
+    "azimuth": -90,
     "elevation": 30,
-    "zoom": 0.5
+    "zoom": 1
   },
-  "edit1": "add a cowboy hat",
-  "edit2": "sitting pose"
+  "edit1": "sad expression"
 }

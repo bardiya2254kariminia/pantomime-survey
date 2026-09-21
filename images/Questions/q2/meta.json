@@ -1,9 +1,9 @@
 {
   "camera": {
-    "azimuth": 90,
-    "elevation": 30,
-    "zoom": 0.5
+    "azimuth": -45,
+    "elevation": 0,
+    "zoom": 1
   },
-  "edit1": "unfold wings",
-  "edit2": "open mouth"
+  "edit1": "change the shirt to a barcelona jersey",
+  "edit2": "oil painting style"
 }

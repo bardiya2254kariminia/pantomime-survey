@@ -1,9 +1,9 @@
 {
   "camera": {
-    "azimuth": -90,
+    "azimuth": 90,
     "elevation": 30,
     "zoom": 0.5
   },
-  "edit1": "raise hands",
-  "edit2": "black and white pencil sketch style"
+  "edit1": "turn on the car's lights",
+  "edit2": "oil painting style"
 }

@@ -1,9 +1,9 @@
 {
   "camera": {
-    "azimuth": -90,
+    "azimuth": 0,
     "elevation": 30,
-    "zoom": 0.5
+    "zoom": 1
   },
-  "edit1": "raise hands",
-  "edit2": "black and white pencil sketch style"
+  "edit1": "add a beach hat",
+  "edit2": "sitting pose"
 }
