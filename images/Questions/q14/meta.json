@@ -5,5 +5,17 @@
     "zoom": 0.5
   },
   "edit1": "turn on the car's lights",
-  "edit2": "oil painting style"
+  "edit2": "oil painting style",
+  "poses": {
+    "a": {
+      "azimuth": 0,
+      "elevation": 0,
+      "distance": 1
+    },
+    "b": {
+      "azimuth": 0,
+      "elevation": 0,
+      "distance": 1
+    }
+  }
 }

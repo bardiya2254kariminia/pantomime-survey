@@ -5,5 +5,17 @@
     "zoom": 0.5
   },
   "edit1": "unfold wings",
-  "edit2": "open mouth"
+  "edit2": "open mouth",
+  "poses": {
+    "a": {
+      "azimuth": -135,
+      "elevation": 0,
+      "distance": 1
+    },
+    "b": {
+      "azimuth": -45,
+      "elevation": 0,
+      "distance": 1
+    }
+  }
 }

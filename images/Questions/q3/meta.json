@@ -5,5 +5,17 @@
     "zoom": 1
   },
   "edit1": "orange fuzzy hair",
-  "edit2": "add a gold chain necklace"
+  "edit2": "add a gold chain necklace",
+  "poses": {
+    "a": {
+      "azimuth": 0,
+      "elevation": 0,
+      "distance": 1
+    },
+    "b": {
+      "azimuth": 90,
+      "elevation": 0,
+      "distance": 1
+    }
+  }
 }
