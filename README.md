@@ -55,7 +55,7 @@ you tick "Include test runs", so testing never mixes with real data.
 
 ## 2. The questions
 
-The 20 questions in `public/images/Questions/` are built from the ablation eval pairs by
+The 15 questions in `public/images/Questions/` are built from the ablation eval pairs by
 `scripts/build_questions_from_evals.py`. Edit its `SELECTION` list (one `eval<N>` key per question,
 in the order participants see them) and re-run it:
 
@@ -74,9 +74,10 @@ baseline. The names themselves are put back by `npm run samples`, which reads
 `scripts/method_blinding.json`: `src/data/samples.json` keys each output by its real baseline, so a
 submitted answer records `"rank1": "PanToMime"`, not `"rank1": "Method_F"`.
 
-The current 20 were hand-picked from the pairs the authors reviewed, for a large A → A' camera move
-(17 of the 20 turn at least 90°) and a wide spread of prompts (all 13 reviewed prompt groups appear),
-then ordered so no two neighbouring questions share a prompt.
+The current 15 (study `pantomime-v2`) are 11 pairs kept from a 20-question first draft plus 4 chosen
+for simple camera moves. They run easy → hard so participants learn the task before the difficult
+views: first a single camera parameter (q1–q7, smallest turn first), then two (q8–q9), then azimuth,
+elevation and distance together (q10–q15). No two neighbouring questions share a prompt.
 
 Two files it also writes, both outside `public/` so participants never receive them:
 

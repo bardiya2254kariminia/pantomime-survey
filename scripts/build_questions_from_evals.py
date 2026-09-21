@@ -63,31 +63,33 @@ METHODS = {
     "Method_I": ("VisualCloze", "VisualCloze/results/images"),
 }
 
-# q1..q20, in the order participants see them. Picked from the reviewed pairs
-# for a large A->A' camera move (17 of the 20 turn at least 90 degrees) and a
-# wide spread of prompts (all 13 reviewed prompt groups appear), then ordered so
-# no two neighbours share a prompt.
+# q1..q15, in the order participants see them: 11 pairs the authors kept from the
+# first 20-question draft, plus 4 they picked for simple camera moves (eval425,
+# eval443, eval432) or kept from that draft (eval86).
+#
+# Ordered easy -> hard so participants learn the task on single-parameter moves
+# before meeting full orbits: one parameter changed (smallest turn first), then
+# two, then azimuth + elevation + distance together. Within that, no two
+# neighbours share a prompt.
 SELECTION = [
-    "eval57",   # raise hands + b&w sketch      az -90  el +30  dist +2
-    "eval86",   # unfold wings + open mouth     az +90  el +30  dist +2
-    "eval65",   # car lights + oil painting     az -135 el -30  dist -2
-    "eval106",  # season to spring              az +135 el -30
-    "eval131",  # baseball cap + sitting        az -90  el +30  dist +2
-    "eval403",  # jumping pose                  az -135
-    "eval40",   # sad expression                az -90  el +30
-    "eval153",  # black top hat + sitting       az -45  el -30  dist -2
-    "eval169",  # cowboy hat + sitting          az +90  el +30  dist +2
+    # one camera parameter
+    "eval425",  # beach hat + sitting           el +30
     "eval174",  # barcelona jersey              az -45
-    "eval385",  # witch hat + sitting           az +135 el -30  dist -2
-    "eval493",  # fireball between the hands    az -135
+    "eval443",  # orange hair + gold chain      az -90
     "eval497",  # ice shard between the hands   az -90
-    "eval59",   # raise hands + b&w sketch      az -90  el +30  dist +2
-    "eval87",   # unfold wings + open mouth     az +135 el +30  dist +2
-    "eval70",   # car lights + oil painting     az +90  el +30  dist +2
-    "eval103",  # season to spring              az -90  el -30
-    "eval129",  # baseball cap + sitting        az +45  el -30  dist -2
-    "eval61",   # raise hands + b&w sketch      az +90  el +30  dist +2
     "eval538",  # unfold wings + open mouth     az -90
+    "eval403",  # jumping pose                  az -135
+    "eval493",  # fireball between the hands    az -135
+    # two
+    "eval432",  # rugby armor + oil painting            el +30  dist +2
+    "eval40",   # sad expression                az -90  el +30
+    # all three
+    "eval129",  # baseball cap + sitting        az +45  el -30  dist -2
+    "eval169",  # cowboy hat + sitting          az +90  el +30  dist +2
+    "eval131",  # baseball cap + sitting        az -90  el +30  dist +2
+    "eval59",   # raise hands + b&w sketch      az -90  el +30  dist +2
+    "eval70",   # car lights + oil painting     az +90  el +30  dist +2
+    "eval86",   # unfold wings + open mouth     az +90  el +30  dist +2
 ]
 
 # distance is a shot label, so the zoom factor comes from a table, not a ratio.

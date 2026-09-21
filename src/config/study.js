@@ -4,7 +4,9 @@
 
 export const study = {
   // Stored with every response so answers from different study versions can be told apart.
-  id: 'pantomime-v1',
+  // v2: 15 questions ordered easy -> hard. v1 was a 20-question draft whose q1..q20
+  // were different pairs, so its answers must not be pooled per question with these.
+  id: 'pantomime-v2',
 
   title: 'Multi-View Image Analogy Study',
   badge: 'Image Editing Research Study',

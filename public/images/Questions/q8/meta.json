@@ -1,9 +1,9 @@
 {
   "camera": {
-    "azimuth": -45,
-    "elevation": -30,
-    "zoom": 2
+    "azimuth": 0,
+    "elevation": 30,
+    "zoom": 0.5
   },
-  "edit1": "add a black top hat",
-  "edit2": "sitting pose"
+  "edit1": "change the shirt to rugby armor",
+  "edit2": "oil painting style"
 }

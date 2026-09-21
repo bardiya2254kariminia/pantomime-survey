@@ -4,92 +4,162 @@
   "baselines_root": "/workspace/ablation_results",
   "questions": {
     "q1": {
-      "eval_key": "eval57",
-      "prompt_group": "prompt_05",
+      "eval_key": "eval425",
+      "prompt_group": "prompt_13",
       "prompts": [
-        "raise hands",
-        "black and white pencil sketch style"
+        "add a beach hat",
+        "sitting pose"
       ],
-      "A": "eval/prompt_05/sample_02/input_5.png",
-      "A_prime": "eval/prompt_05/sample_02/edit_4.png",
-      "B": "eval/prompt_05/sample_07/input_3.png",
-      "B_prime_ground_truth": "eval/prompt_05/sample_07/edit_2.png",
+      "A": "eval/prompt_13/sample_01/input_5.png",
+      "A_prime": "eval/prompt_13/sample_01/edit_5.png",
+      "B": "eval/prompt_13/sample_02/input_1.png",
+      "B_prime_ground_truth": "eval/prompt_13/sample_02/edit_4.png",
       "A_camera": {
-        "az": 90,
+        "az": 0,
         "el": 0,
         "dist": 1
       },
       "B_camera": {
+        "az": -90,
+        "el": 0,
+        "dist": 1
+      },
+      "delta_camera_raw": {
+        "az": 0,
+        "el": 30,
+        "dist": 0
+      },
+      "meta": {
+        "camera": {
+          "azimuth": 0,
+          "elevation": 30,
+          "zoom": 1
+        },
+        "edit1": "add a beach hat",
+        "edit2": "sitting pose"
+      }
+    },
+    "q2": {
+      "eval_key": "eval174",
+      "prompt_group": "prompt_17",
+      "prompts": [
+        "change the shirt to a barcelona jersey",
+        "oil painting style"
+      ],
+      "A": "eval/prompt_17/sample_01/input_4.png",
+      "A_prime": "eval/prompt_17/sample_01/edit_3.png",
+      "B": "eval/prompt_17/sample_02/input_6.png",
+      "B_prime_ground_truth": "eval/prompt_17/sample_02/edit_4.png",
+      "A_camera": {
+        "az": 45,
+        "el": 0,
+        "dist": 1
+      },
+      "B_camera": {
+        "az": 90,
+        "el": 0,
+        "dist": 1
+      },
+      "delta_camera_raw": {
         "az": -45,
+        "el": 0,
+        "dist": 0
+      },
+      "meta": {
+        "camera": {
+          "azimuth": -45,
+          "elevation": 0,
+          "zoom": 1
+        },
+        "edit1": "change the shirt to a barcelona jersey",
+        "edit2": "oil painting style"
+      }
+    },
+    "q3": {
+      "eval_key": "eval443",
+      "prompt_group": "prompt_30",
+      "prompts": [
+        "orange fuzzy hair",
+        "add a gold chain necklace"
+      ],
+      "A": "eval/prompt_30/sample_01/input_4.png",
+      "A_prime": "eval/prompt_30/sample_01/edit_2.png",
+      "B": "eval/prompt_30/sample_02/input_5.png",
+      "B_prime_ground_truth": "eval/prompt_30/sample_02/edit_4.png",
+      "A_camera": {
+        "az": 0,
+        "el": 0,
+        "dist": 1
+      },
+      "B_camera": {
+        "az": 90,
         "el": 0,
         "dist": 1
       },
       "delta_camera_raw": {
         "az": -90,
-        "el": 30,
-        "dist": 2
+        "el": 0,
+        "dist": 0
       },
       "meta": {
         "camera": {
           "azimuth": -90,
-          "elevation": 30,
-          "zoom": 0.5
+          "elevation": 0,
+          "zoom": 1
         },
-        "edit1": "raise hands",
-        "edit2": "black and white pencil sketch style"
+        "edit1": "orange fuzzy hair",
+        "edit2": "add a gold chain necklace"
       }
     },
-    "q2": {
-      "eval_key": "eval86",
+    "q4": {
+      "eval_key": "eval497",
+      "prompt_group": "prompt_38",
+      "prompts": [
+        "ice shard held between the hands"
+      ],
+      "A": "eval/prompt_38/sample_01/input_8.png",
+      "A_prime": "eval/prompt_38/sample_01/edit_4.png",
+      "B": "eval/prompt_38/sample_03/input_7.png",
+      "B_prime_ground_truth": "eval/prompt_38/sample_03/edit_3.png",
+      "A_camera": {
+        "az": 135,
+        "el": 0,
+        "dist": 1
+      },
+      "B_camera": {
+        "az": 45,
+        "el": 30,
+        "dist": 1
+      },
+      "delta_camera_raw": {
+        "az": -90,
+        "el": 0,
+        "dist": 0
+      },
+      "meta": {
+        "camera": {
+          "azimuth": -90,
+          "elevation": 0,
+          "zoom": 1
+        },
+        "edit1": "ice shard held between the hands"
+      }
+    },
+    "q5": {
+      "eval_key": "eval538",
       "prompt_group": "prompt_07",
       "prompts": [
         "unfold wings",
         "open mouth"
       ],
-      "A": "eval/prompt_07/sample_03/input_1.png",
-      "A_prime": "eval/prompt_07/sample_03/edit_4.png",
-      "B": "eval/prompt_07/sample_04/input_4.png",
-      "B_prime_ground_truth": "eval/prompt_07/sample_04/edit_7.png",
-      "A_camera": {
-        "az": -135,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": -45,
-        "el": 0,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": 90,
-        "el": 30,
-        "dist": 2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": 90,
-          "elevation": 30,
-          "zoom": 0.5
-        },
-        "edit1": "unfold wings",
-        "edit2": "open mouth"
-      }
-    },
-    "q3": {
-      "eval_key": "eval65",
-      "prompt_group": "prompt_06",
-      "prompts": [
-        "turn on the car's lights",
-        "oil painting style"
-      ],
-      "A": "eval/prompt_06/sample_01/input_6.png",
-      "A_prime": "eval/prompt_06/sample_01/edit_1.png",
-      "B": "eval/prompt_06/sample_02/input_7.png",
-      "B_prime_ground_truth": "eval/prompt_06/sample_02/edit_1.png",
+      "A": "eval/prompt_07/sample_01/input_8.png",
+      "A_prime": "eval/prompt_07/sample_01/edit_5.png",
+      "B": "eval/prompt_07/sample_03/input_6.png",
+      "B_prime_ground_truth": "eval/prompt_07/sample_03/edit_2.png",
       "A_camera": {
         "az": 90,
-        "el": 30,
-        "dist": 3
+        "el": 0,
+        "dist": 1
       },
       "B_camera": {
         "az": 0,
@@ -97,88 +167,18 @@
         "dist": 3
       },
       "delta_camera_raw": {
-        "az": -135,
-        "el": -30,
-        "dist": -2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": -135,
-          "elevation": -30,
-          "zoom": 2
-        },
-        "edit1": "turn on the car's lights",
-        "edit2": "oil painting style"
-      }
-    },
-    "q4": {
-      "eval_key": "eval106",
-      "prompt_group": "prompt_09",
-      "prompts": [
-        "change the season to spring"
-      ],
-      "A": "eval/prompt_09/sample_02/input_5.png",
-      "A_prime": "eval/prompt_09/sample_02/edit_1.png",
-      "B": "eval/prompt_09/sample_03/input_9.png",
-      "B_prime_ground_truth": "eval/prompt_09/sample_03/edit_1.png",
-      "A_camera": {
-        "az": 90,
-        "el": 30,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": 135,
-        "el": 30,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": -225,
-        "el": -30,
+        "az": -90,
+        "el": 0,
         "dist": 0
       },
       "meta": {
         "camera": {
-          "azimuth": 135,
-          "elevation": -30,
+          "azimuth": -90,
+          "elevation": 0,
           "zoom": 1
         },
-        "edit1": "change the season to spring"
-      }
-    },
-    "q5": {
-      "eval_key": "eval131",
-      "prompt_group": "prompt_12",
-      "prompts": [
-        "add a baseball cap",
-        "sitting pose"
-      ],
-      "A": "eval/prompt_12/sample_01/input_5.png",
-      "A_prime": "eval/prompt_12/sample_01/edit_5.png",
-      "B": "eval/prompt_12/sample_03/input_5.png",
-      "B_prime_ground_truth": "eval/prompt_12/sample_03/edit_3.png",
-      "A_camera": {
-        "az": 90,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": 0,
-        "el": 0,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": -90,
-        "el": 30,
-        "dist": 2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": -90,
-          "elevation": 30,
-          "zoom": 0.5
-        },
-        "edit1": "add a baseball cap",
-        "edit2": "sitting pose"
+        "edit1": "unfold wings",
+        "edit2": "open mouth"
       }
     },
     "q6": {
@@ -216,184 +216,6 @@
       }
     },
     "q7": {
-      "eval_key": "eval40",
-      "prompt_group": "prompt_04",
-      "prompts": [
-        "sad expression"
-      ],
-      "A": "eval/prompt_04/sample_01/input_6.png",
-      "A_prime": "eval/prompt_04/sample_01/edit_2.png",
-      "B": "eval/prompt_04/sample_04/input_2.png",
-      "B_prime_ground_truth": "eval/prompt_04/sample_04/edit_1.png",
-      "A_camera": {
-        "az": 90,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": 0,
-        "el": 0,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": -90,
-        "el": 30,
-        "dist": 0
-      },
-      "meta": {
-        "camera": {
-          "azimuth": -90,
-          "elevation": 30,
-          "zoom": 1
-        },
-        "edit1": "sad expression"
-      }
-    },
-    "q8": {
-      "eval_key": "eval153",
-      "prompt_group": "prompt_14",
-      "prompts": [
-        "add a black top hat",
-        "sitting pose"
-      ],
-      "A": "eval/prompt_14/sample_01/input_4.png",
-      "A_prime": "eval/prompt_14/sample_01/edit_3.png",
-      "B": "eval/prompt_14/sample_02/input_3.png",
-      "B_prime_ground_truth": "eval/prompt_14/sample_02/edit_2.png",
-      "A_camera": {
-        "az": 0,
-        "el": 30,
-        "dist": 3
-      },
-      "B_camera": {
-        "az": -45,
-        "el": 30,
-        "dist": 3
-      },
-      "delta_camera_raw": {
-        "az": -45,
-        "el": -30,
-        "dist": -2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": -45,
-          "elevation": -30,
-          "zoom": 2
-        },
-        "edit1": "add a black top hat",
-        "edit2": "sitting pose"
-      }
-    },
-    "q9": {
-      "eval_key": "eval169",
-      "prompt_group": "prompt_16",
-      "prompts": [
-        "add a cowboy hat",
-        "sitting pose"
-      ],
-      "A": "eval/prompt_16/sample_01/input_1.png",
-      "A_prime": "eval/prompt_16/sample_01/edit_4.png",
-      "B": "eval/prompt_16/sample_03/input_4.png",
-      "B_prime_ground_truth": "eval/prompt_16/sample_03/edit_10.png",
-      "A_camera": {
-        "az": -90,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": 0,
-        "el": 0,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": 90,
-        "el": 30,
-        "dist": 2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": 90,
-          "elevation": 30,
-          "zoom": 0.5
-        },
-        "edit1": "add a cowboy hat",
-        "edit2": "sitting pose"
-      }
-    },
-    "q10": {
-      "eval_key": "eval174",
-      "prompt_group": "prompt_17",
-      "prompts": [
-        "change the shirt to a barcelona jersey",
-        "oil painting style"
-      ],
-      "A": "eval/prompt_17/sample_01/input_4.png",
-      "A_prime": "eval/prompt_17/sample_01/edit_3.png",
-      "B": "eval/prompt_17/sample_02/input_6.png",
-      "B_prime_ground_truth": "eval/prompt_17/sample_02/edit_4.png",
-      "A_camera": {
-        "az": 45,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": 90,
-        "el": 0,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": -45,
-        "el": 0,
-        "dist": 0
-      },
-      "meta": {
-        "camera": {
-          "azimuth": -45,
-          "elevation": 0,
-          "zoom": 1
-        },
-        "edit1": "change the shirt to a barcelona jersey",
-        "edit2": "oil painting style"
-      }
-    },
-    "q11": {
-      "eval_key": "eval385",
-      "prompt_group": "prompt_40",
-      "prompts": [
-        "add a witch hat",
-        "sitting pose"
-      ],
-      "A": "eval/prompt_40/sample_01/input_4.png",
-      "A_prime": "eval/prompt_40/sample_01/edit_9.png",
-      "B": "eval/prompt_40/sample_02/input_4.png",
-      "B_prime_ground_truth": "eval/prompt_40/sample_02/edit_5.png",
-      "A_camera": {
-        "az": 0,
-        "el": 30,
-        "dist": 3
-      },
-      "B_camera": {
-        "az": -90,
-        "el": 30,
-        "dist": 3
-      },
-      "delta_camera_raw": {
-        "az": 135,
-        "el": -30,
-        "dist": -2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": 135,
-          "elevation": -30,
-          "zoom": 2
-        },
-        "edit1": "add a witch hat",
-        "edit2": "sitting pose"
-      }
-    },
-    "q12": {
       "eval_key": "eval493",
       "prompt_group": "prompt_37",
       "prompts": [
@@ -427,183 +249,77 @@
         "edit1": "fireball held between the hands"
       }
     },
-    "q13": {
-      "eval_key": "eval497",
-      "prompt_group": "prompt_38",
+    "q8": {
+      "eval_key": "eval432",
+      "prompt_group": "prompt_20",
       "prompts": [
-        "ice shard held between the hands"
-      ],
-      "A": "eval/prompt_38/sample_01/input_8.png",
-      "A_prime": "eval/prompt_38/sample_01/edit_4.png",
-      "B": "eval/prompt_38/sample_03/input_7.png",
-      "B_prime_ground_truth": "eval/prompt_38/sample_03/edit_3.png",
-      "A_camera": {
-        "az": 135,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": 45,
-        "el": 30,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": -90,
-        "el": 0,
-        "dist": 0
-      },
-      "meta": {
-        "camera": {
-          "azimuth": -90,
-          "elevation": 0,
-          "zoom": 1
-        },
-        "edit1": "ice shard held between the hands"
-      }
-    },
-    "q14": {
-      "eval_key": "eval59",
-      "prompt_group": "prompt_05",
-      "prompts": [
-        "raise hands",
-        "black and white pencil sketch style"
-      ],
-      "A": "eval/prompt_05/sample_03/input_7.png",
-      "A_prime": "eval/prompt_05/sample_03/edit_5.png",
-      "B": "eval/prompt_05/sample_04/input_4.png",
-      "B_prime_ground_truth": "eval/prompt_05/sample_04/edit_4.png",
-      "A_camera": {
-        "az": 90,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": 45,
-        "el": 0,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": -90,
-        "el": 30,
-        "dist": 2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": -90,
-          "elevation": 30,
-          "zoom": 0.5
-        },
-        "edit1": "raise hands",
-        "edit2": "black and white pencil sketch style"
-      }
-    },
-    "q15": {
-      "eval_key": "eval87",
-      "prompt_group": "prompt_07",
-      "prompts": [
-        "unfold wings",
-        "open mouth"
-      ],
-      "A": "eval/prompt_07/sample_03/input_1.png",
-      "A_prime": "eval/prompt_07/sample_03/edit_6.png",
-      "B": "eval/prompt_07/sample_04/input_2.png",
-      "B_prime_ground_truth": "eval/prompt_07/sample_04/edit_7.png",
-      "A_camera": {
-        "az": -135,
-        "el": 0,
-        "dist": 1
-      },
-      "B_camera": {
-        "az": -90,
-        "el": 0,
-        "dist": 1
-      },
-      "delta_camera_raw": {
-        "az": 135,
-        "el": 30,
-        "dist": 2
-      },
-      "meta": {
-        "camera": {
-          "azimuth": 135,
-          "elevation": 30,
-          "zoom": 0.5
-        },
-        "edit1": "unfold wings",
-        "edit2": "open mouth"
-      }
-    },
-    "q16": {
-      "eval_key": "eval70",
-      "prompt_group": "prompt_06",
-      "prompts": [
-        "turn on the car's lights",
+        "change the shirt to rugby armor",
         "oil painting style"
       ],
-      "A": "eval/prompt_06/sample_02/input_4.png",
-      "A_prime": "eval/prompt_06/sample_02/edit_7.png",
-      "B": "eval/prompt_06/sample_05/input_7.png",
-      "B_prime_ground_truth": "eval/prompt_06/sample_05/edit_9.png",
+      "A": "eval/prompt_20/sample_01/input_3.png",
+      "A_prime": "eval/prompt_20/sample_01/edit_3.png",
+      "B": "eval/prompt_20/sample_02/input_6.png",
+      "B_prime_ground_truth": "eval/prompt_20/sample_02/edit_7.png",
       "A_camera": {
         "az": 0,
         "el": 0,
         "dist": 1
       },
       "B_camera": {
-        "az": 0,
+        "az": 90,
         "el": 0,
         "dist": 1
       },
       "delta_camera_raw": {
-        "az": 90,
+        "az": 0,
         "el": 30,
         "dist": 2
       },
       "meta": {
         "camera": {
-          "azimuth": 90,
+          "azimuth": 0,
           "elevation": 30,
           "zoom": 0.5
         },
-        "edit1": "turn on the car's lights",
+        "edit1": "change the shirt to rugby armor",
         "edit2": "oil painting style"
       }
     },
-    "q17": {
-      "eval_key": "eval103",
-      "prompt_group": "prompt_09",
+    "q9": {
+      "eval_key": "eval40",
+      "prompt_group": "prompt_04",
       "prompts": [
-        "change the season to spring"
+        "sad expression"
       ],
-      "A": "eval/prompt_09/sample_01/input_5.png",
-      "A_prime": "eval/prompt_09/sample_01/edit_1.png",
-      "B": "eval/prompt_09/sample_03/input_9.png",
-      "B_prime_ground_truth": "eval/prompt_09/sample_03/edit_5.png",
+      "A": "eval/prompt_04/sample_01/input_6.png",
+      "A_prime": "eval/prompt_04/sample_01/edit_2.png",
+      "B": "eval/prompt_04/sample_04/input_2.png",
+      "B_prime_ground_truth": "eval/prompt_04/sample_04/edit_1.png",
       "A_camera": {
-        "az": 0,
-        "el": 30,
+        "az": 90,
+        "el": 0,
         "dist": 1
       },
       "B_camera": {
-        "az": 135,
-        "el": 30,
+        "az": 0,
+        "el": 0,
         "dist": 1
       },
       "delta_camera_raw": {
         "az": -90,
-        "el": -30,
+        "el": 30,
         "dist": 0
       },
       "meta": {
         "camera": {
           "azimuth": -90,
-          "elevation": -30,
+          "elevation": 30,
           "zoom": 1
         },
-        "edit1": "change the season to spring"
+        "edit1": "sad expression"
       }
     },
-    "q18": {
+    "q10": {
       "eval_key": "eval129",
       "prompt_group": "prompt_12",
       "prompts": [
@@ -639,24 +355,24 @@
         "edit2": "sitting pose"
       }
     },
-    "q19": {
-      "eval_key": "eval61",
-      "prompt_group": "prompt_05",
+    "q11": {
+      "eval_key": "eval169",
+      "prompt_group": "prompt_16",
       "prompts": [
-        "raise hands",
-        "black and white pencil sketch style"
+        "add a cowboy hat",
+        "sitting pose"
       ],
-      "A": "eval/prompt_05/sample_03/input_1.png",
-      "A_prime": "eval/prompt_05/sample_03/edit_5.png",
-      "B": "eval/prompt_05/sample_07/input_7.png",
-      "B_prime_ground_truth": "eval/prompt_05/sample_07/edit_10.png",
+      "A": "eval/prompt_16/sample_01/input_1.png",
+      "A_prime": "eval/prompt_16/sample_01/edit_4.png",
+      "B": "eval/prompt_16/sample_03/input_4.png",
+      "B_prime_ground_truth": "eval/prompt_16/sample_03/edit_10.png",
       "A_camera": {
         "az": -90,
         "el": 0,
         "dist": 1
       },
       "B_camera": {
-        "az": 45,
+        "az": 0,
         "el": 0,
         "dist": 1
       },
@@ -671,21 +387,21 @@
           "elevation": 30,
           "zoom": 0.5
         },
-        "edit1": "raise hands",
-        "edit2": "black and white pencil sketch style"
+        "edit1": "add a cowboy hat",
+        "edit2": "sitting pose"
       }
     },
-    "q20": {
-      "eval_key": "eval538",
-      "prompt_group": "prompt_07",
+    "q12": {
+      "eval_key": "eval131",
+      "prompt_group": "prompt_12",
       "prompts": [
-        "unfold wings",
-        "open mouth"
+        "add a baseball cap",
+        "sitting pose"
       ],
-      "A": "eval/prompt_07/sample_01/input_8.png",
-      "A_prime": "eval/prompt_07/sample_01/edit_5.png",
-      "B": "eval/prompt_07/sample_03/input_6.png",
-      "B_prime_ground_truth": "eval/prompt_07/sample_03/edit_2.png",
+      "A": "eval/prompt_12/sample_01/input_5.png",
+      "A_prime": "eval/prompt_12/sample_01/edit_5.png",
+      "B": "eval/prompt_12/sample_03/input_5.png",
+      "B_prime_ground_truth": "eval/prompt_12/sample_03/edit_3.png",
       "A_camera": {
         "az": 90,
         "el": 0,
@@ -693,19 +409,127 @@
       },
       "B_camera": {
         "az": 0,
-        "el": 30,
-        "dist": 3
+        "el": 0,
+        "dist": 1
       },
       "delta_camera_raw": {
         "az": -90,
-        "el": 0,
-        "dist": 0
+        "el": 30,
+        "dist": 2
       },
       "meta": {
         "camera": {
           "azimuth": -90,
-          "elevation": 0,
-          "zoom": 1
+          "elevation": 30,
+          "zoom": 0.5
+        },
+        "edit1": "add a baseball cap",
+        "edit2": "sitting pose"
+      }
+    },
+    "q13": {
+      "eval_key": "eval59",
+      "prompt_group": "prompt_05",
+      "prompts": [
+        "raise hands",
+        "black and white pencil sketch style"
+      ],
+      "A": "eval/prompt_05/sample_03/input_7.png",
+      "A_prime": "eval/prompt_05/sample_03/edit_5.png",
+      "B": "eval/prompt_05/sample_04/input_4.png",
+      "B_prime_ground_truth": "eval/prompt_05/sample_04/edit_4.png",
+      "A_camera": {
+        "az": 90,
+        "el": 0,
+        "dist": 1
+      },
+      "B_camera": {
+        "az": 45,
+        "el": 0,
+        "dist": 1
+      },
+      "delta_camera_raw": {
+        "az": -90,
+        "el": 30,
+        "dist": 2
+      },
+      "meta": {
+        "camera": {
+          "azimuth": -90,
+          "elevation": 30,
+          "zoom": 0.5
+        },
+        "edit1": "raise hands",
+        "edit2": "black and white pencil sketch style"
+      }
+    },
+    "q14": {
+      "eval_key": "eval70",
+      "prompt_group": "prompt_06",
+      "prompts": [
+        "turn on the car's lights",
+        "oil painting style"
+      ],
+      "A": "eval/prompt_06/sample_02/input_4.png",
+      "A_prime": "eval/prompt_06/sample_02/edit_7.png",
+      "B": "eval/prompt_06/sample_05/input_7.png",
+      "B_prime_ground_truth": "eval/prompt_06/sample_05/edit_9.png",
+      "A_camera": {
+        "az": 0,
+        "el": 0,
+        "dist": 1
+      },
+      "B_camera": {
+        "az": 0,
+        "el": 0,
+        "dist": 1
+      },
+      "delta_camera_raw": {
+        "az": 90,
+        "el": 30,
+        "dist": 2
+      },
+      "meta": {
+        "camera": {
+          "azimuth": 90,
+          "elevation": 30,
+          "zoom": 0.5
+        },
+        "edit1": "turn on the car's lights",
+        "edit2": "oil painting style"
+      }
+    },
+    "q15": {
+      "eval_key": "eval86",
+      "prompt_group": "prompt_07",
+      "prompts": [
+        "unfold wings",
+        "open mouth"
+      ],
+      "A": "eval/prompt_07/sample_03/input_1.png",
+      "A_prime": "eval/prompt_07/sample_03/edit_4.png",
+      "B": "eval/prompt_07/sample_04/input_4.png",
+      "B_prime_ground_truth": "eval/prompt_07/sample_04/edit_7.png",
+      "A_camera": {
+        "az": -135,
+        "el": 0,
+        "dist": 1
+      },
+      "B_camera": {
+        "az": -45,
+        "el": 0,
+        "dist": 1
+      },
+      "delta_camera_raw": {
+        "az": 90,
+        "el": 30,
+        "dist": 2
+      },
+      "meta": {
+        "camera": {
+          "azimuth": 90,
+          "elevation": 30,
+          "zoom": 0.5
         },
         "edit1": "unfold wings",
         "edit2": "open mouth"
