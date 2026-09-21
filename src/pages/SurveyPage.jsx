@@ -3,6 +3,7 @@ import { study, RANK_LABELS } from '../config/study.js'
 import Img from '../components/Img.jsx'
 import Lightbox from '../components/Lightbox.jsx'
 import ChangePanel from '../components/ChangePanel.jsx'
+import CameraDome from '../components/CameraDome.jsx'
 import { ArrowIcon } from '../components/Arrows.jsx'
 
 // Medal colours for the first three ranks, as on the reference site; later ranks are neutral.
@@ -14,6 +15,38 @@ const rankName = (i) => ['Best', 'Second best', 'Third best'][i] ?? `${RANK_LABE
 
 // Tailwind needs literal class names, so map output count → large-screen column class.
 const LG_COLS = { 1: 'lg:grid-cols-1', 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4', 5: 'lg:grid-cols-5', 6: 'lg:grid-cols-6' }
+
+// The question's camera dome: A → A′ as shown, and B → B′ with B′ left as a question mark.
+// zoom is a factor in meta.json but a distance label (1 or 3) in the poses, 2 apart.
+function domePairs(sample) {
+  if (!sample.poses || !sample.camera) return null
+  const { azimuth, elevation, zoom } = sample.camera
+  const move = { az: azimuth, el: elevation, dist: zoom < 1 ? 2 : zoom > 1 ? -2 : 0 }
+  const from = (p) => ({ az: p.azimuth, el: p.elevation, dist: p.distance })
+  return [
+    {
+      id: 'a',
+      tab: 'A → A′',
+      from: from(sample.poses.a),
+      move,
+      imgs: [sample.a, sample.a_prime],
+      labels: ['A', 'A′'],
+      color: '#6366f1',
+      logos: [sample.logos?.a ?? sample.a],
+    },
+    {
+      id: 'b',
+      tab: 'B → B′ (?)',
+      from: from(sample.poses.b),
+      move,
+      imgs: [sample.b, null],
+      labels: ['B', 'B′'],
+      color: '#10b981',
+      logos: [sample.logos?.b ?? sample.b],
+      note: 'That is where B′, the image you imagine, is seen from.',
+    },
+  ]
+}
 
 export default function SurveyPage({ sample, outputOrder, currentIndex, total, initial, onNext, onBack, onRestart }) {
   const methods = outputOrder ?? Object.keys(sample.outputs)
@@ -28,6 +61,8 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, i
   })
   const [zoom, setZoom] = useState(null)
   const shownAt = useRef(Date.now())
+  const dome = domePairs(sample)
+  const [showDome, setShowDome] = useState(true)
 
   const nRanks = Math.min(RANK_LABELS.length, methods.length)
   const assigned = Object.keys(ranks).length
@@ -100,6 +135,26 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, i
             ))}
           </div>
           <ChangePanel edits={sample.edits} camera={sample.camera} />
+          {dome && (
+            <section className="mt-5 rounded-xl border border-sky-200 bg-white p-3.5">
+              <button
+                onClick={() => setShowDome((v) => !v)}
+                aria-expanded={showDome}
+                className="flex w-full items-center justify-between gap-2 text-left cursor-pointer"
+              >
+                <span className="text-xs font-semibold uppercase tracking-wide text-sky-700">Where is the camera?</span>
+                <span className="flex items-center gap-1 text-xs text-slate-400">
+                  {showDome ? 'Hide' : 'Show'}
+                  <ArrowIcon direction={showDome ? 'up' : 'down'} className="w-3.5 h-3.5" />
+                </span>
+              </button>
+              {showDome && (
+                <div className="max-w-3xl mx-auto mt-3">
+                  <CameraDome pairs={dome} />
+                </div>
+              )}
+            </section>
+          )}
         </div>
 
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-6">

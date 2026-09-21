@@ -158,6 +158,29 @@ export default function WelcomePage({ onStart }) {
     { src: ex.b_prime, ...ex.idealOutput, editOk: true, cameraOk: true },
     { ...noEdit },
   ]
+  const domePairs = [
+    {
+      id: 'a',
+      tab: 'Example: A → A′',
+      from: { az: ex.poses.a },
+      move: { az: ex.cameraAzimuth },
+      imgs: [ex.a, ex.a_prime],
+      labels: ['A', 'A′'],
+      color: '#6366f1',
+      logos: ['welcome/logo_dog.png'],
+    },
+    {
+      id: 'b',
+      tab: 'Goal: B → B′',
+      from: { az: ex.poses.b },
+      move: { az: ex.cameraAzimuth },
+      imgs: [ex.b, ex.b_prime],
+      labels: ['B', 'B′'],
+      color: '#10b981',
+      logos: ['welcome/logo_cat.png'],
+      note: 'The same camera move as in A → A′.',
+    },
+  ]
   const toggle = (key) => setOpenChip((current) => (current === key ? null : key))
 
   return (
@@ -263,7 +286,7 @@ export default function WelcomePage({ onStart }) {
             camera somewhere on that dome. Going from <strong>A</strong> to <strong>A′</strong>, the camera orbits around
             the dog. <strong>B′</strong> must be taken after the <strong>same orbit</strong> around the cat.
           </p>
-          <CameraDome example={ex} />
+          <CameraDome pairs={domePairs} explore={['welcome/logo_dog.png', 'welcome/logo_cat.png']} />
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7 mb-6">

@@ -62,6 +62,7 @@ in the order participants see them) and re-run it:
 ```bash
 python3 scripts/build_questions_from_evals.py --dry-run   # show what it would write
 python3 scripts/build_questions_from_evals.py             # rewrite q1..qN
+python3 scripts/build_dome_assets.py                      # camera poses + subject badges for each question's dome
 npm run samples                                           # then regenerate samples.json
 ```
 
@@ -277,6 +278,7 @@ src/
 public/images/Questions/   question folders q1, q2, … (the current ones are placeholders)
 public/welcome/            welcome-page example images
 scripts/build_questions_from_evals.py  eval pairs → question folders (+ the method-name key)
+scripts/build_dome_assets.py           adds meta.json "poses" and dome/logo_{a,b}.png to each question folder
 scripts/build_samples.py   folders → samples.json (applies the method names)
 scripts/fetch_responses.py Firestore → one JSON file of every answer
 scripts/fetch_responses.sh the same, with the credential and dependency handling

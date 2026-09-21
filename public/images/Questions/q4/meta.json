@@ -4,5 +4,17 @@
     "elevation": 0,
     "zoom": 1
   },
-  "edit1": "ice shard held between the hands"
+  "edit1": "ice shard held between the hands",
+  "poses": {
+    "a": {
+      "azimuth": 135,
+      "elevation": 0,
+      "distance": 1
+    },
+    "b": {
+      "azimuth": 45,
+      "elevation": 30,
+      "distance": 1
+    }
+  }
 }

@@ -22,6 +22,12 @@ Camera (all optional):
     zoom       factor; 1 = unchanged, above 1 = zoom in, below 1 = zoom out
 The camera values may also be written at the top level instead of inside "camera".
 
+Camera dome (optional, written by scripts/build_dome_assets.py):
+    "poses": {"a": {"azimuth": 0, "elevation": 0, "distance": 1}, "b": {...}}
+                          where the cameras of A and B stand; A' and B' are these plus "camera"
+    dome/logo_a.png, dome/logo_b.png
+                          round front-view badges of the two subjects, shown in the dome's centre
+
 Questions appear in natural order (q2 before q10) unless public/images/Questions/order.txt
 lists folder names (one per line); folders missing from order.txt are then left out.
 Any of .png / .jpg / .jpeg / .webp works.
@@ -89,10 +95,21 @@ def read_meta(folder: Path):
             if not isinstance(value, str) or not value.strip():
                 raise SystemExit(f"{folder.name}/meta.json: {key} must be a non-empty string")
             edits.append((int(m.group(1)), value.strip()))
-        elif key != "camera" and key not in CAMERA_DEFAULTS:
+        elif key not in ("camera", "poses") and key not in CAMERA_DEFAULTS:
             unknown.append(key)
     if edits:
         out["edits"] = [value for _, value in sorted(edits)]
+
+    if "poses" in meta:
+        poses = meta["poses"]
+        for role in ("a", "b"):
+            p = poses.get(role) if isinstance(poses, dict) else None
+            if not isinstance(p, dict) or not all(
+                isinstance(p.get(k), (int, float)) and not isinstance(p.get(k), bool)
+                for k in ("azimuth", "elevation", "distance")
+            ):
+                raise SystemExit(f"{folder.name}/meta.json: poses.{role} needs numeric azimuth, elevation and distance")
+        out["poses"] = {role: {k: poses[role][k] for k in ("azimuth", "elevation", "distance")} for role in ("a", "b")}
 
     if unknown:
         print(f"WARNING: {folder.name}/meta.json: ignoring unknown keys {', '.join(unknown)}", file=sys.stderr)
@@ -125,6 +142,9 @@ def build_sample(folder: Path, names: dict):
     sample = {"id": folder.name}
     sample.update({key: rel(files[stem]) for stem, key in REFERENCE.items()})
     sample.update(read_meta(folder))
+    logos = {role: folder / "dome" / f"logo_{role}.png" for role in ("a", "b")}
+    if all(p.exists() for p in logos.values()):
+        sample["logos"] = {role: rel(p) for role, p in logos.items()}
 
     sample["outputs"] = {names.get(stem, stem): rel(p) for stem, p in files.items() if stem not in REFERENCE}
     if len(sample["outputs"]) < 2:

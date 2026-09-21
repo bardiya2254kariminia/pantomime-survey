@@ -13,6 +13,22 @@
       "add a beach hat",
       "sitting pose"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": -90,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q1/dome/logo_a.png",
+      "b": "images/Questions/q1/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q1/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q1/Method_B.png",
@@ -39,6 +55,22 @@
       "change the shirt to a barcelona jersey",
       "oil painting style"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 45,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q2/dome/logo_a.png",
+      "b": "images/Questions/q2/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q2/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q2/Method_B.png",
@@ -65,6 +97,22 @@
       "orange fuzzy hair",
       "add a gold chain necklace"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q3/dome/logo_a.png",
+      "b": "images/Questions/q3/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q3/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q3/Method_B.png",
@@ -90,6 +138,22 @@
     "edits": [
       "ice shard held between the hands"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 135,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 45,
+        "elevation": 30,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q4/dome/logo_a.png",
+      "b": "images/Questions/q4/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q4/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q4/Method_B.png",
@@ -116,6 +180,22 @@
       "unfold wings",
       "open mouth"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 0,
+        "elevation": 30,
+        "distance": 3
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q5/dome/logo_a.png",
+      "b": "images/Questions/q5/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q5/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q5/Method_B.png",
@@ -141,6 +221,22 @@
     "edits": [
       "jumping pose"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 135,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 45,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q6/dome/logo_a.png",
+      "b": "images/Questions/q6/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q6/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q6/Method_B.png",
@@ -166,6 +262,22 @@
     "edits": [
       "fireball held between the hands"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 0,
+        "elevation": 30,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q7/dome/logo_a.png",
+      "b": "images/Questions/q7/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q7/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q7/Method_B.png",
@@ -192,6 +304,22 @@
       "change the shirt to rugby armor",
       "oil painting style"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q8/dome/logo_a.png",
+      "b": "images/Questions/q8/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q8/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q8/Method_B.png",
@@ -217,6 +345,22 @@
     "edits": [
       "sad expression"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q9/dome/logo_a.png",
+      "b": "images/Questions/q9/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q9/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q9/Method_B.png",
@@ -243,6 +387,22 @@
       "add a baseball cap",
       "sitting pose"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 45,
+        "elevation": 30,
+        "distance": 3
+      },
+      "b": {
+        "azimuth": 0,
+        "elevation": 30,
+        "distance": 3
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q10/dome/logo_a.png",
+      "b": "images/Questions/q10/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q10/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q10/Method_B.png",
@@ -269,6 +429,22 @@
       "add a cowboy hat",
       "sitting pose"
     ],
+    "poses": {
+      "a": {
+        "azimuth": -90,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q11/dome/logo_a.png",
+      "b": "images/Questions/q11/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q11/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q11/Method_B.png",
@@ -295,6 +471,22 @@
       "add a baseball cap",
       "sitting pose"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q12/dome/logo_a.png",
+      "b": "images/Questions/q12/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q12/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q12/Method_B.png",
@@ -321,6 +513,22 @@
       "raise hands",
       "black and white pencil sketch style"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 90,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 45,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q13/dome/logo_a.png",
+      "b": "images/Questions/q13/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q13/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q13/Method_B.png",
@@ -347,6 +555,22 @@
       "turn on the car's lights",
       "oil painting style"
     ],
+    "poses": {
+      "a": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q14/dome/logo_a.png",
+      "b": "images/Questions/q14/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q14/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q14/Method_B.png",
@@ -373,6 +597,22 @@
       "unfold wings",
       "open mouth"
     ],
+    "poses": {
+      "a": {
+        "azimuth": -135,
+        "elevation": 0,
+        "distance": 1
+      },
+      "b": {
+        "azimuth": -45,
+        "elevation": 0,
+        "distance": 1
+      }
+    },
+    "logos": {
+      "a": "images/Questions/q15/dome/logo_a.png",
+      "b": "images/Questions/q15/dome/logo_b.png"
+    },
     "outputs": {
       "Edit-Transfer": "images/Questions/q15/Method_A.png",
       "Flux2-Klein-9B": "images/Questions/q15/Method_B.png",
