@@ -77,7 +77,7 @@ submitted answer records `"rank1": "PanToMime"`, not `"rank1": "Method_F"`.
 
 The current 15 (study `pantomime-v2`) are 11 pairs kept from a 20-question first draft plus 4 chosen
 for simple camera moves. They run easy → hard so participants learn the task before the difficult
-views: first a single camera parameter (q1–q7, smallest turn first), then two (q8–q9), then azimuth,
+views: first a single camera parameter (q1–q7), then two (q8–q9), then azimuth,
 elevation and distance together (q10–q15). No two neighbouring questions share a prompt.
 
 Two files it also writes, both outside `public/` so participants never receive them:

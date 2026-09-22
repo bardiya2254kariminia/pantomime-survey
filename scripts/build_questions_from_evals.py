@@ -73,9 +73,9 @@ METHODS = {
 # neighbours share a prompt.
 SELECTION = [
     # one camera parameter
-    "eval425",  # beach hat + sitting           el +30
-    "eval174",  # barcelona jersey              az -45
     "eval443",  # orange hair + gold chain      az -90
+    "eval174",  # barcelona jersey              az -45
+    "eval425",  # beach hat + sitting           el +30
     "eval497",  # ice shard between the hands   az -90
     "eval538",  # unfold wings + open mouth     az -90
     "eval403",  # jumping pose                  az -135

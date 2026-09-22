@@ -4,39 +4,39 @@
   "baselines_root": "/workspace/ablation_results",
   "questions": {
     "q1": {
-      "eval_key": "eval425",
-      "prompt_group": "prompt_13",
+      "eval_key": "eval443",
+      "prompt_group": "prompt_30",
       "prompts": [
-        "add a beach hat",
-        "sitting pose"
+        "orange fuzzy hair",
+        "add a gold chain necklace"
       ],
-      "A": "eval/prompt_13/sample_01/input_5.png",
-      "A_prime": "eval/prompt_13/sample_01/edit_5.png",
-      "B": "eval/prompt_13/sample_02/input_1.png",
-      "B_prime_ground_truth": "eval/prompt_13/sample_02/edit_4.png",
+      "A": "eval/prompt_30/sample_01/input_4.png",
+      "A_prime": "eval/prompt_30/sample_01/edit_2.png",
+      "B": "eval/prompt_30/sample_02/input_5.png",
+      "B_prime_ground_truth": "eval/prompt_30/sample_02/edit_4.png",
       "A_camera": {
         "az": 0,
         "el": 0,
         "dist": 1
       },
       "B_camera": {
-        "az": -90,
+        "az": 90,
         "el": 0,
         "dist": 1
       },
       "delta_camera_raw": {
-        "az": 0,
-        "el": 30,
+        "az": -90,
+        "el": 0,
         "dist": 0
       },
       "meta": {
         "camera": {
-          "azimuth": 0,
-          "elevation": 30,
+          "azimuth": -90,
+          "elevation": 0,
           "zoom": 1
         },
-        "edit1": "add a beach hat",
-        "edit2": "sitting pose"
+        "edit1": "orange fuzzy hair",
+        "edit2": "add a gold chain necklace"
       }
     },
     "q2": {
@@ -76,39 +76,39 @@
       }
     },
     "q3": {
-      "eval_key": "eval443",
-      "prompt_group": "prompt_30",
+      "eval_key": "eval425",
+      "prompt_group": "prompt_13",
       "prompts": [
-        "orange fuzzy hair",
-        "add a gold chain necklace"
+        "add a beach hat",
+        "sitting pose"
       ],
-      "A": "eval/prompt_30/sample_01/input_4.png",
-      "A_prime": "eval/prompt_30/sample_01/edit_2.png",
-      "B": "eval/prompt_30/sample_02/input_5.png",
-      "B_prime_ground_truth": "eval/prompt_30/sample_02/edit_4.png",
+      "A": "eval/prompt_13/sample_01/input_5.png",
+      "A_prime": "eval/prompt_13/sample_01/edit_5.png",
+      "B": "eval/prompt_13/sample_02/input_1.png",
+      "B_prime_ground_truth": "eval/prompt_13/sample_02/edit_4.png",
       "A_camera": {
         "az": 0,
         "el": 0,
         "dist": 1
       },
       "B_camera": {
-        "az": 90,
+        "az": -90,
         "el": 0,
         "dist": 1
       },
       "delta_camera_raw": {
-        "az": -90,
-        "el": 0,
+        "az": 0,
+        "el": 30,
         "dist": 0
       },
       "meta": {
         "camera": {
-          "azimuth": -90,
-          "elevation": 0,
+          "azimuth": 0,
+          "elevation": 30,
           "zoom": 1
         },
-        "edit1": "orange fuzzy hair",
-        "edit2": "add a gold chain necklace"
+        "edit1": "add a beach hat",
+        "edit2": "sitting pose"
       }
     },
     "q4": {
