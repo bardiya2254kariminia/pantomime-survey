@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { asset } from '../lib/asset.js'
 
 // A dome around the subject that shows where each photo's camera stands, used on the
@@ -76,9 +76,9 @@ function moveLabel({ az = 0, el = 0, dist = 0 }) {
 }
 
 // The camera: a star so it reads at a glance, with a camera body on it (as in the original figure).
-function CameraStar({ x, y, faded }) {
+function CameraStar({ x, y, faded, uid }) {
   return (
-    <g transform={`translate(${x} ${y})`} filter="url(#dome-shadow)" opacity={faded ? 0.5 : 1}>
+    <g transform={`translate(${x} ${y})`} filter={`url(#${uid}-shadow)`} opacity={faded ? 0.5 : 1}>
       <path
         d="M0 -22 L6 -8 L21 -6.5 L9.5 3 L13 18.5 L0 10.5 L-13 18.5 L-9.5 3 L-21 -6.5 L-6 -8 Z"
         fill="#fff"
@@ -119,17 +119,17 @@ function snapBox(pose, avoid = []) {
 
 // What the camera at `pose` sees, just outside the dome in the camera's direction.
 // No `src` means the image is unknown -- the one participants must imagine -- shown as a question mark.
-function Snapshot({ box, src, label, color, id }) {
+function Snapshot({ box, src, label, color, id, uid }) {
   const { x, y } = box
   const tag = label.length > 1 ? 30 : 22
   return (
     <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)})`}>
       {src ? (
         <>
-          <clipPath id={`dome-snap-${id}`}>
+          <clipPath id={`${uid}-snap-${id}`}>
             <rect width={SNAP} height={SNAP} rx="12" />
           </clipPath>
-          <image href={asset(src)} width={SNAP} height={SNAP} clipPath={`url(#dome-snap-${id})`} preserveAspectRatio="xMidYMid slice" />
+          <image href={asset(src)} width={SNAP} height={SNAP} clipPath={`url(#${uid}-snap-${id})`} preserveAspectRatio="xMidYMid slice" />
           <rect width={SNAP} height={SNAP} rx="12" fill="none" stroke={color} strokeWidth="3" />
         </>
       ) : (
@@ -149,12 +149,12 @@ function Snapshot({ box, src, label, color, id }) {
 }
 
 // The subject(s) in the middle of the dome, as round front-view badges.
-function Logo({ srcs }) {
+function Logo({ srcs, uid }) {
   const two = srcs.length > 1
   const r = two ? 32 : 38
   const offsets = two ? [-25, 25] : [0]
   return (
-    <g transform={`translate(${CX} ${CY})`} filter="url(#dome-shadow)">
+    <g transform={`translate(${CX} ${CY})`} filter={`url(#${uid}-shadow)`}>
       {srcs.map((src, i) => (
         <g key={src} transform={`translate(${offsets[i]} 0)`}>
           <circle r={r + 3} fill="#fff" stroke="#b9d7ef" strokeWidth="2" />
@@ -208,6 +208,8 @@ function frontLabel(boxes) {
 //             labels: ['A', 'A′'], color, logos: [src], note }]
 // `explore`: logos for an extra "Try it yourself" tab with a free camera, or nothing for no such tab.
 export default function CameraDome({ pairs, explore }) {
+  // Several domes can share a page (one per pair on each question), so SVG ids must be unique.
+  const uid = `dome${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`
   const [tab, setTab] = useState(pairs[0].id)
   const [replay, setReplay] = useState(0)
   const [az, setAz] = useState(45)
@@ -280,13 +282,13 @@ export default function CameraDome({ pairs, explore }) {
       <div className="rounded-2xl border border-sky-100 bg-gradient-to-b from-sky-50/60 to-white p-2 sm:p-3">
         <svg viewBox={`0 0 ${W} ${H}`} className="block w-full h-auto" role="img" aria-label="Camera positions on a dome around the subject">
           <defs>
-            <filter id="dome-shadow" x="-40%" y="-40%" width="180%" height="180%">
+            <filter id={`${uid}-shadow`} x="-40%" y="-40%" width="180%" height="180%">
               <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#2d79af" floodOpacity=".16" />
             </filter>
-            <marker id="dome-arrow-red" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 10 10" refX="8" refY="5" orient="auto">
+            <marker id={`${uid}-arrow-red`} markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 10 10" refX="8" refY="5" orient="auto">
               <path d="M0,0 L10,5 L0,10 Z" fill={RED} />
             </marker>
-            <marker id="dome-arrow-blue" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 10 10" refX="8" refY="5" orient="auto">
+            <marker id={`${uid}-arrow-blue`} markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 10 10" refX="8" refY="5" orient="auto">
               <path d="M0,0 L10,5 L0,10 Z" fill={BLUE} />
             </marker>
           </defs>
@@ -309,7 +311,7 @@ export default function CameraDome({ pairs, explore }) {
               )
             })}
 
-          <Logo srcs={logos} />
+          <Logo srcs={logos} uid={uid} />
           <path d={`M ${CX - RX} ${CY} A ${RX} ${RY} 0 0 0 ${CX + RX} ${CY}`} fill="none" stroke="#92b4d4" strokeWidth="2.2" />
           {/* "front": where the subject is looking */}
           <path d={`M ${CX} ${CY + 44} L ${CX} ${CY + RY - 4}`} stroke="#aac3da" strokeWidth="2" strokeDasharray="3 4" />
@@ -324,7 +326,7 @@ export default function CameraDome({ pairs, explore }) {
           {pair ? (
             moved && (
               <>
-                <path d={arcPath(pair.from, cam)} fill="none" stroke={RED} strokeWidth="3.4" strokeDasharray="7 5" markerEnd="url(#dome-arrow-red)">
+                <path d={arcPath(pair.from, cam)} fill="none" stroke={RED} strokeWidth="3.4" strokeDasharray="7 5" markerEnd={`url(#${uid}-arrow-red)`}>
                   {/* dashes march from the first camera to the second */}
                   {!reduceMotion && <animate attributeName="stroke-dashoffset" from="24" to="0" dur="0.8s" repeatCount="indefinite" />}
                 </path>
@@ -334,7 +336,7 @@ export default function CameraDome({ pairs, explore }) {
             <>
               {Math.abs(cam.az) > 2 && (
                 <>
-                  <path d={arcPath({ az: 0, el: 0 }, { az: cam.az, el: 0 })} fill="none" stroke={RED} strokeWidth="3.4" strokeDasharray="7 5" markerEnd="url(#dome-arrow-red)" />
+                  <path d={arcPath({ az: 0, el: 0 }, { az: cam.az, el: 0 })} fill="none" stroke={RED} strokeWidth="3.4" strokeDasharray="7 5" markerEnd={`url(#${uid}-arrow-red)`} />
                   <text x={point(cam.az / 2).x} y={point(cam.az / 2).y + 36} textAnchor="middle" fontSize="18" fontWeight="850" fill={RED}>
                     azimuth
                   </text>
@@ -343,7 +345,7 @@ export default function CameraDome({ pairs, explore }) {
               {/* elevation arc (hidden near 0° to avoid clutter) */}
               {cam.el > 1.5 && (
                 <>
-                  <path d={arcPath({ az: cam.az, el: 0 }, cam)} fill="none" stroke={BLUE} strokeWidth="3.4" strokeDasharray="7 5" markerEnd="url(#dome-arrow-blue)" />
+                  <path d={arcPath({ az: cam.az, el: 0 }, cam)} fill="none" stroke={BLUE} strokeWidth="3.4" strokeDasharray="7 5" markerEnd={`url(#${uid}-arrow-blue)`} />
                   <text x={camPt.x + (cam.az <= 0 ? 24 : -24)} y={camPt.y - 16} textAnchor={cam.az <= 0 ? 'start' : 'end'} fontSize="18" fontWeight="850" fill={BLUE}>
                     elevation
                   </text>
@@ -354,12 +356,12 @@ export default function CameraDome({ pairs, explore }) {
 
           {pair && (
             <>
-              <CameraStar {...point(pair.from.az, pair.from.el)} faded />
-              <Snapshot box={snaps[0]} src={pair.imgs[0]} label={pair.labels[0]} color={pair.color} id={`${pair.id}-0`} />
-              {t > 0.98 && <Snapshot box={snaps[1]} src={pair.imgs[1]} label={pair.labels[1]} color={pair.color} id={`${pair.id}-1`} />}
+              <CameraStar {...point(pair.from.az, pair.from.el)} faded uid={uid} />
+              <Snapshot box={snaps[0]} src={pair.imgs[0]} label={pair.labels[0]} color={pair.color} id={`${pair.id}-0`} uid={uid} />
+              {t > 0.98 && <Snapshot box={snaps[1]} src={pair.imgs[1]} label={pair.labels[1]} color={pair.color} id={`${pair.id}-1`} uid={uid} />}
             </>
           )}
-          <CameraStar x={camPt.x} y={camPt.y} />
+          <CameraStar x={camPt.x} y={camPt.y} uid={uid} />
 
           {/* once the camera has arrived: arrowheads keep flowing along the move, start → end */}
           {pair && moved && t > 0.98 && !reduceMotion && (

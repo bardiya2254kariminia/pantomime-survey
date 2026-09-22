@@ -16,7 +16,7 @@ const rankName = (i) => ['Best', 'Second best', 'Third best'][i] ?? `${RANK_LABE
 // Tailwind needs literal class names, so map output count → large-screen column class.
 const LG_COLS = { 1: 'lg:grid-cols-1', 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4', 5: 'lg:grid-cols-5', 6: 'lg:grid-cols-6' }
 
-// The question's camera dome: A → A′ as shown, and B → B′ with B′ left as a question mark.
+// The question's camera domes, side by side: A → A′ as shown, and B → B′ with B′ left as a question mark.
 // zoom is a factor in meta.json but a distance label (1 or 3) in the poses, 2 apart.
 function domePairs(sample) {
   if (!sample.poses || !sample.camera) return null
@@ -149,8 +149,15 @@ export default function SurveyPage({ sample, outputOrder, currentIndex, total, i
                 </span>
               </button>
               {showDome && (
-                <div className="max-w-3xl mx-auto mt-3">
-                  <CameraDome pairs={dome} />
+                <div className="grid md:grid-cols-2 gap-4 mt-3">
+                  {dome.map((pair) => (
+                    <div key={pair.id}>
+                      <p className="text-center text-sm font-semibold mb-1.5" style={{ color: pair.color }}>
+                        {pair.tab}
+                      </p>
+                      <CameraDome pairs={[pair]} />
+                    </div>
+                  ))}
                 </div>
               )}
             </section>
