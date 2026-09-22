@@ -9,41 +9,55 @@ import { asset } from '../lib/asset.js'
 // (left and right as seen from the front camera, i.e. on screen).
 
 const W = 860
-const H = 540
+const H = 560
 const CX = 430
-const CY = 300
+const CY = 318
 const RX = 300 // horizon ellipse
-const RY = 80
-const DOME = 240 // dome height: tall enough that a camera 30° up at the front clears the subject
+const RY = 64
+const DOME = 270 // dome height: tall enough that a camera 30° up at the front clears the subject, on either orb
 
 const RED = '#ef5350'
 const BLUE = '#2a7fbe'
+const PURPLE = '#8b5cf6' // zoom
+// When a pair involves a camera farther away (the dataset's wide shot, distance 3) the dome is drawn
+// twice: an inner orb for the normal distance and a secondary, outer orb for "farther away".
+// Zooming moves the camera between the two. Sizes are fractions of the full dome.
+const INNER = 0.68
+const OUTER = 1
+const easeInOut = (x) => (x < 0.5 ? 4 * x ** 3 : 1 - (-2 * x + 2) ** 3 / 2)
+const easeOut = (x) => 1 - (1 - x) ** 3
+const clamp01 = (x) => Math.min(1, Math.max(0, x))
 const rad = (d) => (d * Math.PI) / 180
 const fmt = (v) => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(Math.round(v))}°`
 
-function point(az, el = 0) {
+// `s` is the size of the orb the point is on: 1 is the full dome, INNER the inner orb.
+function point(az, el = 0, s = 1) {
   const x = Math.sin(rad(az)) * Math.cos(rad(el))
   const z = Math.cos(rad(az)) * Math.cos(rad(el))
-  return { x: CX - RX * x, y: CY + RY * z - DOME * Math.sin(rad(el)) }
+  return { x: CX - RX * x * s, y: CY + (RY * z - DOME * Math.sin(rad(el))) * s }
 }
 
-// Polyline along the sphere between two poses; used for both arcs so they follow the dome.
-function arcPath(from, to) {
-  const steps = Math.max(2, Math.ceil(Math.max(Math.abs(to.az - from.az), Math.abs(to.el - from.el)) / 3))
-  const pts = Array.from({ length: steps + 1 }, (_, i) => {
-    const t = i / steps
-    return point(from.az + (to.az - from.az) * t, from.el + (to.el - from.el) * t)
-  })
-  return pts.map((p, i) => `${i ? 'L' : 'M'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
-}
-
-// The way from a point on the dome out of it, in screen space: where its snapshot and labels go.
+// The way from a point on the dome out of it, in screen space: where far cameras, snapshots and labels go.
 function outward(p) {
   const dx = (p.x - CX) / RX
   const dy = (p.y - CY) / RY
   const len = Math.hypot(dx, dy) || 1
   return { x: dx / len, y: dy / len }
 }
+
+const at = (pose) => point(pose.az, pose.el ?? 0, pose.s ?? 1)
+
+// Polyline along the sphere between two poses; used for both arcs so they follow the dome.
+function arcPath(from, to) {
+  const steps = Math.max(2, Math.ceil(Math.max(Math.abs(to.az - from.az), Math.abs(to.el - from.el)) / 3))
+  const [s0, s1] = [from.s ?? 1, to.s ?? 1]
+  const pts = Array.from({ length: steps + 1 }, (_, i) => {
+    const t = i / steps
+    return point(from.az + (to.az - from.az) * t, from.el + (to.el - from.el) * t, s0 + (s1 - s0) * t)
+  })
+  return pts.map((p, i) => `${i ? 'L' : 'M'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
+}
+
 
 // Plain-words pose, read after "the": "front", "left side", "back, toward the right, from above" …
 function describePose({ az, el = 0, dist = 1 }) {
@@ -67,18 +81,20 @@ function describeMove({ az = 0, el = 0, dist = 0 }) {
 }
 
 // Short form for the tag in the corner: "90° orbit left + 30° up + zoom out".
+// Returned as [text, color] parts, so the zoom reads in the zoom arrow's purple.
 function moveLabel({ az = 0, el = 0, dist = 0 }) {
   const parts = []
-  if (az) parts.push(`${Math.abs(az)}° orbit ${az > 0 ? 'left' : 'right'}`)
-  if (el) parts.push(`${Math.abs(el)}° ${el > 0 ? 'up' : 'down'}`)
-  if (dist) parts.push(dist > 0 ? 'zoom out' : 'zoom in')
-  return parts.join(' + ') || 'no move'
+  if (az) parts.push([`${Math.abs(az)}° orbit ${az > 0 ? 'left' : 'right'}`, RED])
+  if (el) parts.push([`${Math.abs(el)}° ${el > 0 ? 'up' : 'down'}`, RED])
+  if (dist) parts.push([dist > 0 ? 'zoom out' : 'zoom in', PURPLE])
+  return parts.length ? parts : [['no move', RED]]
 }
 
 // The camera: a star so it reads at a glance, with a camera body on it (as in the original figure).
-function CameraStar({ x, y, faded, uid }) {
+// `far` (0..1) shrinks it a little: a camera farther away looks smaller.
+function CameraStar({ x, y, faded, far = 0, uid }) {
   return (
-    <g transform={`translate(${x} ${y})`} filter={`url(#${uid}-shadow)`} opacity={faded ? 0.5 : 1}>
+    <g transform={`translate(${x} ${y}) scale(${1 - 0.18 * far})`} filter={`url(#${uid}-shadow)`} opacity={faded ? 0.5 : 1}>
       <path
         d="M0 -22 L6 -8 L21 -6.5 L9.5 3 L13 18.5 L0 10.5 L-13 18.5 L-9.5 3 L-21 -6.5 L-6 -8 Z"
         fill="#fff"
@@ -101,7 +117,7 @@ const overlaps = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h
 // Where a camera's snapshot goes: just outside the dome in the camera's direction, or, if
 // that spot is taken (two cameras can land close together on screen), the nearest free one.
 function snapBox(pose, avoid = []) {
-  const p = point(pose.az, pose.el)
+  const p = at(pose)
   const o = outward(p)
   let first
   for (const d of [74, 104, 134]) {
@@ -149,9 +165,9 @@ function Snapshot({ box, src, label, color, id, uid }) {
 }
 
 // The subject(s) in the middle of the dome, as round front-view badges.
-function Logo({ srcs, uid }) {
+function Logo({ srcs, small, uid }) {
   const two = srcs.length > 1
-  const r = two ? 32 : 38
+  const r = two ? 32 : small ? 31 : 38
   const offsets = two ? [-25, 25] : [0]
   return (
     <g transform={`translate(${CX} ${CY})`} filter={`url(#${uid}-shadow)`}>
@@ -165,7 +181,8 @@ function Logo({ srcs, uid }) {
   )
 }
 
-// Moves 0 → 1 over `ms` whenever `key` changes (instantly if the viewer prefers reduced motion).
+// Moves 0 → 1 linearly over `ms` whenever `key` changes (instantly if the viewer prefers
+// reduced motion). Callers ease it themselves, since the orbit and the zoom ease separately.
 function useProgress(key, ms = 1400) {
   const [t, setT] = useState(1)
   useEffect(() => {
@@ -174,7 +191,7 @@ function useProgress(key, ms = 1400) {
     const start = performance.now()
     const tick = (now) => {
       const k = Math.min(1, (now - start) / ms)
-      setT(1 - (1 - k) ** 3)
+      setT(k)
       if (k < 1) frame = requestAnimationFrame(tick)
     }
     setT(0)
@@ -184,16 +201,16 @@ function useProgress(key, ms = 1400) {
   return t
 }
 
-// The "front" label: the first spot that is clear of every snapshot and camera.
-function frontLabel(boxes) {
+// The "front" label, below the outermost orb (`s`): the first spot clear of every snapshot and camera.
+function frontLabel(boxes, s = 1) {
   const long = 'front (the way the subject faces)'
   const w = (text) => text.length * 8.2
   const spots = [
-    { text: long, x: CX - 30, anchor: 'end', y: CY + RY + 24 },
-    { text: long, x: CX + 30, anchor: 'start', y: CY + RY + 24 },
-    { text: 'front', x: CX - 30, anchor: 'end', y: CY + RY + 24 },
-    { text: 'front', x: CX + 30, anchor: 'start', y: CY + RY + 24 },
-    { text: 'front', x: CX, anchor: 'middle', y: CY + RY - 14 },
+    { text: long, x: CX - 30, anchor: 'end', y: CY + RY * s + 24 },
+    { text: long, x: CX + 30, anchor: 'start', y: CY + RY * s + 24 },
+    { text: 'front', x: CX - 30, anchor: 'end', y: CY + RY * s + 24 },
+    { text: 'front', x: CX + 30, anchor: 'start', y: CY + RY * s + 24 },
+    { text: 'front', x: CX, anchor: 'middle', y: CY + RY * s - 14 },
   ]
   const box = (s) => ({
     x: s.anchor === 'end' ? s.x - w(s.text) : s.anchor === 'start' ? s.x : s.x - w(s.text) / 2,
@@ -214,44 +231,91 @@ export default function CameraDome({ pairs, explore }) {
   const [replay, setReplay] = useState(0)
   const [az, setAz] = useState(45)
   const [el, setEl] = useState(30)
-  const t = useProgress(`${tab}-${replay}`)
   const [reduceMotion] = useState(() => !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)
 
   const tabs = [...pairs.map((p) => ({ id: p.id, label: p.tab })), ...(explore ? [{ id: 'explore', label: 'Try it yourself' }] : [])]
   const found = pairs.find((p) => p.id === tab)
+  const fromDist = found?.from.dist ?? 1
+  const toDist = fromDist + (found?.move.dist ?? 0)
+  // Two orbs only when this pair has a camera farther away; otherwise the one full-size dome.
+  const twoOrbs = !!found && (fromDist > 1 || toDist > 1)
+  const inner = twoOrbs ? INNER : 1
+  const size = (dist) => (dist > 1 ? OUTER : inner)
   const pair = found && {
     ...found,
-    from: { el: 0, dist: 1, ...found.from },
+    from: { el: 0, ...found.from, dist: fromDist, s: size(fromDist) },
     to: {
       az: found.from.az + (found.move.az ?? 0),
       el: (found.from.el ?? 0) + (found.move.el ?? 0),
-      dist: (found.from.dist ?? 1) + (found.move.dist ?? 0),
+      dist: toDist,
+      s: size(toDist),
     },
   }
 
-  // Pair tabs animate the camera from the first photo's pose to the second's.
-  const cam = pair ? { az: pair.from.az + (pair.to.az - pair.from.az) * t, el: pair.from.el + (pair.to.el - pair.from.el) * t } : { az, el }
-  const camPt = point(cam.az, cam.el)
-  const ground = point(cam.az, 0)
-  const moved = pair && (Math.abs(pair.to.az - pair.from.az) > 0 || Math.abs(pair.to.el - pair.from.el) > 0)
+  // Pair tabs animate the camera from the first photo's pose to the second's: the orbit (around
+  // and up/down, on the starting orb), then the zoom (straight out to the outer orb, or in). Each
+  // eases in and out on its own, and the zoom starts before the orbit ends, so the move is one
+  // smooth motion rather than two steps with a corner.
+  const orbits = pair && (pair.to.az !== pair.from.az || pair.to.el !== pair.from.el)
+  const zooms = pair && pair.to.s !== pair.from.s
+  const moved = pair && (orbits || zooms)
+  const r = useProgress(`${tab}-${replay}`, zooms ? 2300 : 1400)
+  const done = r > 0.98
+  const u = !orbits ? 1 : zooms ? easeInOut(clamp01(r / 0.62)) : easeOut(r) // orbit progress
+  const v = !zooms ? 0 : orbits ? easeInOut(clamp01((r - 0.42) / 0.58)) : easeInOut(r) // zoom progress
+  const corner = pair && { az: pair.to.az, el: pair.to.el, s: pair.from.s } // where the orbit ends and the zoom starts
+  const cam = pair
+    ? {
+        az: pair.from.az + (pair.to.az - pair.from.az) * u,
+        el: pair.from.el + (pair.to.el - pair.from.el) * u,
+        s: pair.from.s + (pair.to.s - pair.from.s) * v,
+      }
+    : { az, el, s: 1 }
+  const onStartOrb = pair && { az: cam.az, el: cam.el, s: pair.from.s } // the camera's point on the orb it left
+  const camPt = at(cam)
+  const ground = point(cam.az, 0, inner)
+  const zoomFrom = zooms && at(corner)
+  const farness = (c) => (twoOrbs ? (c.s - inner) / (OUTER - inner) : 0)
+  // The whole move as one path, for the flowing arrowheads.
+  const movePath = pair && moved && `${arcPath(pair.from, corner)}${zooms ? ` L ${at(pair.to).x.toFixed(1)} ${at(pair.to).y.toFixed(1)}` : ''}`
 
   const cams = pair ? [pair.from, pair.to, cam] : [cam]
   const camBoxes = cams.map((c) => {
-    const p = point(c.az, c.el)
+    const p = at(c)
     return { x: p.x - 24, y: p.y - 24, w: 48, h: 48 }
   })
   const logoBox = { x: CX - 62, y: CY - 44, w: 124, h: 88 }
   const cornerBox = { x: 0, y: 0, w: 360, h: 60 } // the move tag
   const snaps = []
   if (pair) {
-    snaps.push(snapBox(pair.from, [...camBoxes.slice(0, 2), logoBox, cornerBox]))
-    snaps.push(snapBox(pair.to, [...camBoxes.slice(0, 2), logoBox, cornerBox, snaps[0]]))
+    // The zoom starts where the orbit ends; keep pictures off that stretch too.
+    const zoomStart = zooms ? [{ x: at(corner).x - 20, y: at(corner).y - 20, w: 40, h: 40 }] : []
+    snaps.push(snapBox(pair.from, [...camBoxes.slice(0, 2), ...zoomStart, logoBox, cornerBox]))
+    snaps.push(snapBox(pair.to, [...camBoxes.slice(0, 2), ...zoomStart, logoBox, cornerBox, snaps[0]]))
   }
-  const front = frontLabel([...snaps, ...camBoxes])
-  const moveText = pair && moveLabel(pair.move)
+  const front = frontLabel([...snaps, ...camBoxes], twoOrbs ? OUTER : 1)
+
+  // "zoom in/out" beside the zoom arrow, on whichever side is clear of the snapshots and cameras.
+  const zoomLabel = zooms && (() => {
+    const to = at(pair.to)
+    const dx = to.x - zoomFrom.x
+    const dy = to.y - zoomFrom.y
+    const len = Math.hypot(dx, dy) || 1
+    const text = pair.to.s > pair.from.s ? 'zoom out' : 'zoom in'
+    const w = text.length * 10
+    const spots = [26, -26, 44, -44].map((d) => {
+      const x = (zoomFrom.x + to.x) / 2 - (dy / len) * d
+      const y = (zoomFrom.y + to.y) / 2 + (dx / len) * d + 5
+      return { x, y, text, box: { x: x - w / 2, y: y - 16, w, h: 20 } }
+    })
+    // No clear spot: leave it out; the purple "zoom" in the corner tag still names it.
+    return spots.find((l) => [...snaps, ...camBoxes.slice(0, 2)].every((b) => !overlaps(l.box, b)))
+  })()
+  const moveParts = pair && moveLabel(pair.move)
+  const moveText = pair && moveParts.map(([text]) => text).join(' + ')
 
   const sides = [
-    { az: 180, text: 'back', dy: 26 },
+    { az: 180, text: 'back', dy: -8 },
     { az: 90, text: 'left', dx: 34, dy: 5 },
     { az: -90, text: 'right', dx: -34, dy: 5 },
   ]
@@ -288,22 +352,37 @@ export default function CameraDome({ pairs, explore }) {
             <marker id={`${uid}-arrow-red`} markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 10 10" refX="8" refY="5" orient="auto">
               <path d="M0,0 L10,5 L0,10 Z" fill={RED} />
             </marker>
+            <marker id={`${uid}-arrow-purple`} markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 10 10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill={PURPLE} />
+            </marker>
             <marker id={`${uid}-arrow-blue`} markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 10 10" refX="8" refY="5" orient="auto">
               <path d="M0,0 L10,5 L0,10 Z" fill={BLUE} />
             </marker>
           </defs>
 
+          {/* secondary orb: where a camera farther away stands */}
+          {twoOrbs && (
+            <>
+              <path d={`M ${CX - RX} ${CY} A ${RX} ${DOME} 0 0 1 ${CX + RX} ${CY} A ${RX} ${RY} 0 0 1 ${CX - RX} ${CY} Z`} fill="#f8f6ff" />
+              <path d={`M ${CX - RX} ${CY} A ${RX} ${DOME} 0 0 1 ${CX + RX} ${CY}`} fill="none" stroke={PURPLE} strokeOpacity=".5" strokeWidth="1.8" strokeDasharray="6 5" />
+              <ellipse cx={CX} cy={CY} rx={RX} ry={RY} fill="none" stroke={PURPLE} strokeOpacity=".5" strokeWidth="1.6" strokeDasharray="6 5" />
+              <text x={CX + RX * Math.cos(rad(38)) + 10} y={CY - DOME * Math.sin(rad(38))} fontSize="14" fontWeight="800" fill={PURPLE}>
+                farther away
+              </text>
+            </>
+          )}
           {/* dome: far half of the horizon dashed, near half solid */}
-          <path d={`M ${CX - RX} ${CY} A ${RX} ${DOME} 0 0 1 ${CX + RX} ${CY} A ${RX} ${RY} 0 0 1 ${CX - RX} ${CY} Z`} fill="#f4f9fe" />
-          <path d={`M ${CX - RX} ${CY} A ${RX} ${DOME} 0 0 1 ${CX + RX} ${CY}`} fill="none" stroke="#92b4d4" strokeWidth="2.2" />
-          <path d={`M ${CX - RX} ${CY} A ${RX} ${RY} 0 0 1 ${CX + RX} ${CY}`} fill="none" stroke="#92b4d4" strokeWidth="2" strokeDasharray="5 6" />
-          <text x={CX} y={CY - DOME - 12} textAnchor="middle" fontSize="18" fontWeight="800" fill="#17324a">
+          <path d={`M ${CX - RX * inner} ${CY} A ${RX * inner} ${DOME * inner} 0 0 1 ${CX + RX * inner} ${CY} A ${RX * inner} ${RY * inner} 0 0 1 ${CX - RX * inner} ${CY} Z`} fill="#f4f9fe" />
+          <path d={`M ${CX - RX * inner} ${CY} A ${RX * inner} ${DOME * inner} 0 0 1 ${CX + RX * inner} ${CY}`} fill="none" stroke="#92b4d4" strokeWidth="2.2" />
+          <path d={`M ${CX - RX * inner} ${CY} A ${RX * inner} ${RY * inner} 0 0 1 ${CX + RX * inner} ${CY}`} fill="none" stroke="#92b4d4" strokeWidth="2" strokeDasharray="5 6" />
+          <text x={CX} y={CY - DOME * inner - (twoOrbs ? 8 : 12)} textAnchor="middle" fontSize={twoOrbs ? 15 : 18} fontWeight="800" fill="#17324a">
             top
           </text>
+
           {sides
             .filter((l) => cams.every((c) => c.el > 25 || Math.abs(((c.az - l.az + 540) % 360) - 180) > 30))
             .map((l) => {
-              const p = point(l.az)
+              const p = point(l.az, 0, inner)
               return (
                 <text key={l.text} x={p.x + (l.dx ?? 0)} y={p.y + (l.dy ?? 0)} textAnchor="middle" fontSize="15" fontWeight="700" fill="#6f859a">
                   {l.text}
@@ -311,10 +390,10 @@ export default function CameraDome({ pairs, explore }) {
               )
             })}
 
-          <Logo srcs={logos} uid={uid} />
-          <path d={`M ${CX - RX} ${CY} A ${RX} ${RY} 0 0 0 ${CX + RX} ${CY}`} fill="none" stroke="#92b4d4" strokeWidth="2.2" />
+          <Logo srcs={logos} small={twoOrbs} uid={uid} />
+          <path d={`M ${CX - RX * inner} ${CY} A ${RX * inner} ${RY * inner} 0 0 0 ${CX + RX * inner} ${CY}`} fill="none" stroke="#92b4d4" strokeWidth="2.2" />
           {/* "front": where the subject is looking */}
-          <path d={`M ${CX} ${CY + 44} L ${CX} ${CY + RY - 4}`} stroke="#aac3da" strokeWidth="2" strokeDasharray="3 4" />
+          <path d={`M ${CX} ${CY + 44} L ${CX} ${CY + RY * (twoOrbs ? OUTER : 1) - 4}`} stroke="#aac3da" strokeWidth="2" strokeDasharray="3 4" />
           <text x={front.x} y={front.y} textAnchor={front.anchor} fontSize="15" fontWeight="700" fill="#6f859a">
             {front.text}
           </text>
@@ -324,14 +403,24 @@ export default function CameraDome({ pairs, explore }) {
           {cam.el > 1.5 && <circle cx={ground.x} cy={ground.y} r="5" fill="#97a9bb" />}
 
           {pair ? (
-            moved && (
-              <>
-                <path d={arcPath(pair.from, cam)} fill="none" stroke={RED} strokeWidth="3.4" strokeDasharray="7 5" markerEnd={`url(#${uid}-arrow-red)`}>
+            <>
+              {orbits && (
+                <path d={arcPath(pair.from, onStartOrb)} fill="none" stroke={RED} strokeWidth="3.4" strokeDasharray="7 5" markerEnd={zooms ? undefined : `url(#${uid}-arrow-red)`}>
                   {/* dashes march from the first camera to the second */}
                   {!reduceMotion && <animate attributeName="stroke-dashoffset" from="24" to="0" dur="0.8s" repeatCount="indefinite" />}
                 </path>
-              </>
-            )
+              )}
+              {zooms && v > 0.01 && (
+                <>
+                  <line x1={at(onStartOrb).x} y1={at(onStartOrb).y} x2={camPt.x} y2={camPt.y} stroke={PURPLE} strokeWidth="4.4" strokeDasharray="7 5" markerEnd={`url(#${uid}-arrow-purple)`}>
+                    {!reduceMotion && <animate attributeName="stroke-dashoffset" from="24" to="0" dur="0.8s" repeatCount="indefinite" />}
+                  </line>
+                  {zoomLabel && done && <text x={zoomLabel.x} y={zoomLabel.y} textAnchor="middle" fontSize="17" fontWeight="850" fill={PURPLE} stroke="#fff" strokeWidth="4" paintOrder="stroke">
+                    {zoomLabel.text}
+                  </text>}
+                </>
+              )}
+            </>
           ) : (
             <>
               {Math.abs(cam.az) > 2 && (
@@ -356,19 +445,19 @@ export default function CameraDome({ pairs, explore }) {
 
           {pair && (
             <>
-              <CameraStar {...point(pair.from.az, pair.from.el)} faded uid={uid} />
+              <CameraStar {...at(pair.from)} far={farness(pair.from)} faded uid={uid} />
               <Snapshot box={snaps[0]} src={pair.imgs[0]} label={pair.labels[0]} color={pair.color} id={`${pair.id}-0`} uid={uid} />
-              {t > 0.98 && <Snapshot box={snaps[1]} src={pair.imgs[1]} label={pair.labels[1]} color={pair.color} id={`${pair.id}-1`} uid={uid} />}
+              {done && <Snapshot box={snaps[1]} src={pair.imgs[1]} label={pair.labels[1]} color={pair.color} id={`${pair.id}-1`} uid={uid} />}
             </>
           )}
-          <CameraStar x={camPt.x} y={camPt.y} uid={uid} />
+          <CameraStar x={camPt.x} y={camPt.y} far={farness(cam)} uid={uid} />
 
           {/* once the camera has arrived: arrowheads keep flowing along the move, start → end */}
-          {pair && moved && t > 0.98 && !reduceMotion && (
+          {pair && moved && done && !reduceMotion && (
             <g key={`${tab}-${replay}`}>
               {[0, 0.6, 1.2].map((delay) => (
                 <path key={delay} d="M-7 -7.5 L3 0 L-7 7.5" fill="none" stroke={RED} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0">
-                  <animateMotion dur="1.8s" begin={`${delay}s`} repeatCount="indefinite" rotate="auto" path={arcPath(pair.from, pair.to)} keyPoints="0.12;0.88" keyTimes="0;1" calcMode="linear" />
+                  <animateMotion dur="1.8s" begin={`${delay}s`} repeatCount="indefinite" rotate="auto" path={movePath} keyPoints="0.12;0.88" keyTimes="0;1" calcMode="linear" />
                   <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.2;0.8;1" dur="1.8s" begin={`${delay}s`} repeatCount="indefinite" />
                 </path>
               ))}
@@ -380,9 +469,12 @@ export default function CameraDome({ pairs, explore }) {
               <rect width={moveText.length * 8.6 + 96} height="32" rx="16" fill="#fff" stroke="#f3c4c3" strokeWidth="1.5" />
               <text x="16" y="21" fontSize="14" fontWeight="700" fill="#6f859a">
                 move:{' '}
-                <tspan fontWeight="850" fill={RED}>
-                  {moveText}
-                </tspan>
+                {moveParts.map(([text, color], i) => (
+                  <tspan key={text} fontWeight="850" fill={i ? '#6f859a' : color}>
+                    {i ? ' + ' : ''}
+                    <tspan fill={color}>{text}</tspan>
+                  </tspan>
+                ))}
               </text>
             </g>
           )}
